@@ -1,5 +1,5 @@
 Rails.application.configure do
-    # Verifies that versions and hashed value of the package contents in the project's package.json
+  # Verifies that versions and hashed value of the package contents in the project's package.json
   config.webpacker.check_yarn_integrity = true
 
   # Settings specified here will take precedence over those in config/application.rb.
@@ -21,7 +21,7 @@ Rails.application.configure do
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
+      'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}",
     }
   else
     config.action_controller.perform_caching = false
@@ -55,6 +55,6 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  #Or - Additions
-  config.x.webpacker[:dev_server_host] = "http//127.0.0.1:8080"
+  # Or - Additions
+  config.x.webpacker[:dev_server_host] = 'http//127.0.0.1:8080'
 end

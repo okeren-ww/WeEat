@@ -1,10 +1,7 @@
 class RestaurantsController < ApplicationController
-
   def index
     @restaurants = Restaurant.all
   end
-
-
 
   def new
     @restaurant = Restaurant.new
@@ -63,5 +60,4 @@ class RestaurantsController < ApplicationController
                                        :address,
                                        :max_delivery_time)
   end
-
 end
