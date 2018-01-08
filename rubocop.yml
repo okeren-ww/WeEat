@@ -1,0 +1,67 @@
+# This is the configuration used to check the rubocop source code.
+# Check out: https://github.com/bbatsov/rubocop
+
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 2.3
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'vendor/**/*'
+    - 'spec/fixtures/**/*'
+    - 'node_modules/**/*'
+    - 'db/**/*'
+    - 'db/schema.rb'
+    - 'db/seeds.rb'
+    - 'client/node_modules/**/*'
+    - 'bin/**/*'
+    - !ruby/regexp /old_and_unused\.rb$/
+
+Metrics/AbcSize:
+  Max: 25
+
+Metrics/LineLength:
+  Max: 120
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: ()
+    "%i": ()
+    "%w": ()
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented_relative_to_receiver
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 15
+  Exclude:
+    - "spec/**/*.rb"
+
+Metrics/ModuleLength:
+  Exclude:
+    - "spec/**/*.rb"
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*.rb"
+    - "config/initializers/rails_admin.rb"
+  ExcludedMethods:
+    - namespace
+    - task
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: comma

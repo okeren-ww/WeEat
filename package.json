@@ -10,6 +10,12 @@
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
+    "babel-eslint": "^8.1.2",
+    "eslint": "^4.15.0",
+    "eslint-nibble": "^4.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
     "webpack-dev-server": "^2.10.0"
   }
 }
