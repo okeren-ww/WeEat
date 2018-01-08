@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  cuisine: MyString
+  rating: 1
+  accepts_ten_bis: false
+  address: MyString
+  max_delivery_time: 1
+
+two:
+  name: MyString
+  cuisine: MyString
+  rating: 1
+  accepts_ten_bis: false
+  address: MyString
+  max_delivery_time: 1
