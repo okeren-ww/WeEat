@@ -36,6 +36,9 @@ gem 'jbuilder', '~> 2.5'
 #
 gem 'rubocop', require: false
 
+gem 'faraday', '~> 0.13.1'
+gem 'hashie', '~> 3.5', '>= 3.5.7'
+
 group :development, :test do
   gem 'active_model_serializers', '~> 0.10.0'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
