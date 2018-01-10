@@ -17,7 +17,10 @@ class ReviewsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create review' do
     assert_difference('Review.count') do
-      post reviews_url, params: { review: { comment: @review.comment, rating: @review.rating, restaurant_id: @review.restaurant_id, reviewer_name: @review.reviewer_name } }
+      post reviews_url, params: { review: { comment: @review.comment,
+                                            rating: @review.rating,
+                                            restaurant_id: @review.restaurant_id,
+                                            reviewer_name: @review.reviewer_name } }
     end
 
     assert_redirected_to review_url(Review.last)
@@ -34,7 +37,10 @@ class ReviewsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update review' do
-    patch review_url(@review), params: { review: { comment: @review.comment, rating: @review.rating, restaurant_id: @review.restaurant_id, reviewer_name: @review.reviewer_name } }
+    patch review_url(@review), params: { review: { comment: @review.comment,
+                                                   rating: @review.rating,
+                                                   restaurant_id: @review.restaurant_id,
+                                                   reviewer_name: @review.reviewer_name } }
     assert_redirected_to review_url(@review)
   end
 
