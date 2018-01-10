@@ -1,7 +1,6 @@
 namespace :zomato_api do
   desc 'Loads restaurants from NYC using Zomato API'
   task load_restaurant_to_db: :environment do
-
     conn = Faraday.new(url: 'https://developers.zomato.com')
     conn.headers = { 'user-key' => ENV['ZOMATO_API_KEY'] }
 
@@ -11,12 +10,11 @@ namespace :zomato_api do
     end
 
     cuisines_body = JSON.parse cuisines.body
-    cuisines_body["cuisines"].each do |cuisine|
-      cuisine_id = cuisine["cuisine"]["cuisine_id"]
-      cuisine_name = cuisine["cuisine"]["cuisine_name"]
+    cuisines_body['cuisines'].each do |cuisine|
+      cuisine_id = cuisine['cuisine']['cuisine_id']
 
-      puts 'cuisine name: ' + cuisine["cuisine"]["cuisine_name"]
-      puts "=================="
+      puts 'cuisine name: ' + cuisine['cuisine']['cuisine_name']
+      puts '=================='
 
       restaurants = conn.get '/api/v2.1/search' do |request|
         request.params['city_id'] = 280
@@ -34,14 +32,13 @@ namespace :zomato_api do
 
   def create_restaurant(restaurant)
     Restaurant.create!(id: restaurant['restaurant']['id'],
-                              name: restaurant['restaurant']['name'],
-                              cuisine: cuisine_name,
-                              accepts_ten_bis: true,
-                              address: restaurant['restaurant']['location']['address'],
-                              max_delivery_time: 10,
-                              rating: 0)
+                       name: restaurant['restaurant']['name'],
+                       cuisine: cuisine_name,
+                       accepts_ten_bis: true,
+                       address: restaurant['restaurant']['location']['address'],
+                       max_delivery_time: 10,
+                       rating: 0)
   end
-
 
   def fetch_reviews(restaurant_id, conn)
     reviews = conn.get '/api/v2.1/reviews' do |request|
@@ -57,5 +54,4 @@ namespace :zomato_api do
                      restaurant_id: restaurant_id)
     end
   end
-
 end

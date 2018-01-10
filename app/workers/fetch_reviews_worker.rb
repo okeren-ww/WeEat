@@ -16,6 +16,6 @@ class FetchReviewsWorker
                      reviewer_name: review['review']['user']['name'],
                      comment: review['review']['review_text'],
                      restaurant_id: rest.id)
-      end
+    end
   end
 end
