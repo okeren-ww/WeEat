@@ -1,10 +1,9 @@
 namespace :zomato_api do
   desc 'Loads restaurants from NYC using Zomato API'
   task load_restaurant_to_db: :environment do
-    conn = Faraday.new(url: 'https://developers.zomato.com')
-    conn.headers = { 'user-key' => '1aea80c4eaa47d73499522cbe8d7714b' }
-    # conn.use Faraday::Response::Logger #used for logging purposes
 
+    conn = Faraday.new(url: 'https://developers.zomato.com')
+    conn.headers = { 'user-key' => ENV['ZOMATO_API_KEY'] }
 
     # Retrieving cuisines
     cuisines = conn.get '/api/v2.1/cuisines' do |request|
@@ -27,20 +26,36 @@ namespace :zomato_api do
 
       restaurant_body = JSON.parse restaurants.body
       restaurant_body['restaurants'].each do |restaurant|
-        puts restaurant['restaurant']['name']
-        Restaurant.create!(name: restaurant['restaurant']['name'],
-                           cuisine: cuisine_name,
-                           accepts_ten_bis: true,
-                           address: restaurant['restaurant']['location']['address'],
-                           max_delivery_time: 10,
-                           rating: 0)
-
-
+        create_restaurant restaurant
+        fetch_reviews restaurant['restaurant']['id'], conn
       end
+    end
+  end
 
+  def create_restaurant(restaurant)
+    Restaurant.create!(id: restaurant['restaurant']['id'],
+                              name: restaurant['restaurant']['name'],
+                              cuisine: cuisine_name,
+                              accepts_ten_bis: true,
+                              address: restaurant['restaurant']['location']['address'],
+                              max_delivery_time: 10,
+                              rating: 0)
+  end
+
+
+  def fetch_reviews(restaurant_id, conn)
+    reviews = conn.get '/api/v2.1/reviews' do |request|
+      request.params['res_id'] = rest.id
     end
 
-
+    reviews_body = JSON.parse reviews.body
+    reviews_body['user_reviews'].each do |review|
+      Review.create!(id: review['review']['id'],
+                     rating: review['review']['rating'],
+                     reviewer_name: review['review']['user']['name'],
+                     comment: review['review']['review_text'],
+                     restaurant_id: restaurant_id)
+    end
   end
 
 end

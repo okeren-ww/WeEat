@@ -4,6 +4,7 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
+gem 'dotenv-rails', groups: [:development, :test]
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
@@ -38,6 +39,7 @@ gem 'rubocop', require: false
 
 gem 'faraday', '~> 0.13.1'
 gem 'hashie', '~> 3.5', '>= 3.5.7'
+gem 'sidekiq', '~> 5.0', '>= 5.0.5'
 
 group :development, :test do
   gem 'active_model_serializers', '~> 0.10.0'
