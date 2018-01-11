@@ -31,12 +31,9 @@ describe Restaurant do
     (0..4).each do |i|
       ratings.push Faker::Number.between(0, 5)
     end
-
+    # move faker to factory
     let!(:restaurant_with_reviews) { FactoryBot.create(:restaurant_with_reviews, dummy_ratings: ratings) }
     it 'Should return average rating' do
-      puts ratings
-      puts restaurant_with_reviews.rating
-      puts ratings.sum.fdiv(ratings.size)
       expect(restaurant_with_reviews.rating).to eql(ratings.sum.fdiv(ratings.size))
     end
   end
