@@ -32,7 +32,7 @@ class RestaurantsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @cart.update(cart_params)
+      if @restaurant.update(restaurant_params)
         format.html { redirect_to @restaurant, notice: 'Restaurant was successfully updated.' }
         format.json { render :show, status: :ok, location: @restaurant }
       else
