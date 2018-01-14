@@ -7,8 +7,6 @@ class RestaurantSerializer < ActiveModel::Serializer
              :address,
              :max_delivery_time
 
-  has_many :reviews
-
   def rating
     object.rating
   end
