@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       if @review.save
         format.html { redirect_to @review, notice: 'Review was successfully created.' }
-        format.json { render :show, status: :created, location: @review }
+        format.json { render :show, status: :created, review: @review }
       else
         format.html { render :new }
         format.json { render json: @review.errors, status: :unprocessable_entity }
@@ -41,7 +41,7 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       if @review.update(review_params)
         format.html { redirect_to @review, notice: 'Review was successfully updated.' }
-        format.json { render :show, status: :ok, location: @review }
+        format.json { render :show, status: :ok, review: @review }
       else
         format.html { render :edit }
         format.json { render json: @review.errors, status: :unprocessable_entity }

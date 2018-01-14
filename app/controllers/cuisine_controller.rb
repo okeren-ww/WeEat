@@ -9,10 +9,10 @@ class CuisineController < ApplicationController
 
   def create
     @cuisine = Cuisine.new(cuisine_params)
-
+    
     respond_to do |format|
       if @cuisine.save
-        format.json { render :show, status: :created, location: @cuisine }
+        format.json { render :show, status: :created, cuisine: @cuisine }
       else
         format.json { render json: @cuisine.errors, status: :unprocessable_entity }
       end
@@ -21,17 +21,13 @@ class CuisineController < ApplicationController
 
   def destroy
     @cuisine.destroy
-
-    respond_to do |format|
-      format.json { head :no_content }
-    end
   end
 
   def update
     respond_to do |format|
       if @cuisine.update(cuisine_params)
         format.html { redirect_to @cuisine, notice: 'Restaurant was successfully updated.' }
-        format.json { render :show, status: :ok, location: @cuisine }
+        format.json { render :show, status: :ok, cuisine: @cuisine }
       else
         format.html { render :edit }
         format.json { render json: @cuisine.errors, status: :unprocessable_entity }
