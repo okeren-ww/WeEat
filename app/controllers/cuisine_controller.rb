@@ -1,6 +1,9 @@
 class CuisineController < ApplicationController
+  include ErrorConcern
+
   def index
     @cuisines = Cuisine.all
+    render json: @cuisines.to_json
   end
 
   def new
@@ -9,30 +12,17 @@ class CuisineController < ApplicationController
 
   def create
     @cuisine = Cuisine.new(cuisine_params)
-    
-    respond_to do |format|
-      if @cuisine.save
-        format.json { render :show, status: :created, cuisine: @cuisine }
-      else
-        format.json { render json: @cuisine.errors, status: :unprocessable_entity }
-      end
-    end
+    @cuisine.save!
+    render :show, status: :created, cuisine: @cuisine
   end
 
   def destroy
-    @cuisine.destroy
+    @cuisine.destroy!
   end
 
   def update
-    respond_to do |format|
-      if @cuisine.update(cuisine_params)
-        format.html { redirect_to @cuisine, notice: 'Restaurant was successfully updated.' }
-        format.json { render :show, status: :ok, cuisine: @cuisine }
-      else
-        format.html { render :edit }
-        format.json { render json: @cuisine.errors, status: :unprocessable_entity }
-      end
-    end
+    @cuisine.update!(cuisine_params)
+    render :show, status: :ok, cuisine: @cuisine
   end
 
   def show; end
