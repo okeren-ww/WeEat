@@ -1,10 +1,14 @@
 class ReviewsController < ApplicationController
+  include ErrorConcern
+
   before_action :set_review, only: %i(show edit update destroy)
 
   # GET /reviews
   # GET /reviews.json
   def index
-    @reviews = Review.all
+    reviews = Review.all
+
+    render json: reviews.to_json
   end
 
   # GET /reviews/1
@@ -22,48 +26,30 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    @review = Review.new(review_params)
+    @review = Review.create!(review_params)
 
-    respond_to do |format|
-      if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
-        format.json { render :show, status: :created, location: @review }
-      else
-        format.html { render :new }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
-      end
-    end
+    render json: @review
   end
 
   # PATCH/PUT /reviews/1
   # PATCH/PUT /reviews/1.json
   def update
-    respond_to do |format|
-      if @review.update(review_params)
-        format.html { redirect_to @review, notice: 'Review was successfully updated.' }
-        format.json { render :show, status: :ok, location: @review }
-      else
-        format.html { render :edit }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
-      end
-    end
+    @review.update!(review_params)
+
+    render json: @review
   end
 
   # DELETE /reviews/1
   # DELETE /reviews/1.json
   def destroy
-    @review.destroy
-    respond_to do |format|
-      format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @review.destroy!
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_review
-    @review = Review.find(params[:id])
+    @review = Review.find(params.require(:id))
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

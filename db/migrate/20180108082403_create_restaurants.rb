@@ -3,7 +3,7 @@ class CreateRestaurants < ActiveRecord::Migration[5.1]
     create_table :restaurants do |t|
       t.string :name
       t.string :cuisine
-      t.integer :rating
+      t.integer :rating, default: 0
       t.boolean :accepts_ten_bis
       t.string :address
       t.integer :max_delivery_time

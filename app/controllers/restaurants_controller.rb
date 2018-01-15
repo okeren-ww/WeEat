@@ -1,6 +1,10 @@
 class RestaurantsController < ApplicationController
+  include ErrorConcern
+
   def index
-    @restaurants = Restaurant.all
+    restaurants = Restaurant.all
+
+    render json: restaurants.to_json
   end
 
   def new
@@ -8,38 +12,19 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    @restaurant = Restaurant.new(restaurant_params)
+    @restaurant = Restaurant.create!(restaurant_params)
 
-    respond_to do |format|
-      if @restaurant.save
-        format.html { redirect_to @restaurant, notice: 'Restaurant was successfully created.' }
-        format.json { render :show, status: :created, location: @restaurant }
-      else
-        format.html { render :new }
-        format.json { render json: @restaurant.errors, status: :unprocessable_entity }
-      end
-    end
+    render json: @restaurant
   end
 
   def destroy
-    @restaurant.destroy
-
-    respond_to do |format|
-      format.html { redirect_to restaurants_url, notice: 'Restaurant was successfully deleted' }
-      format.json { head :no_content }
-    end
+    @restaurant.destroy!
   end
 
   def update
-    respond_to do |format|
-      if @cart.update(cart_params)
-        format.html { redirect_to @restaurant, notice: 'Restaurant was successfully updated.' }
-        format.json { render :show, status: :ok, location: @restaurant }
-      else
-        format.html { render :edit }
-        format.json { render json: @restaurant.errors, status: :unprocessable_entity }
-      end
-    end
+    @restaurant.update!(restaurant_params)
+
+    render json: @restaurant
   end
 
   def show; end
@@ -49,12 +34,12 @@ class RestaurantsController < ApplicationController
   private
 
   def set_restaurant
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find(params.require(:id))
   end
 
   def restaurant_params
     params.require(:restaurant).permit(:name,
-                                       :cuisine,
+                                       :cuisine_id,
                                        :rating,
                                        :accepts_ten_bis,
                                        :address,
