@@ -8,7 +8,7 @@
 /.bundle
 
 #ignore idea workspace
-.idea/workspace.xml
+.idea/
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
