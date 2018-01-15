@@ -2,8 +2,9 @@ class RestaurantsController < ApplicationController
   include ErrorConcern
 
   def index
-    @restaurants = Restaurant.all
-    render json: @restaurants.to_json
+    restaurants = Restaurant.all
+
+    render json: restaurants.to_json
   end
 
   def new
@@ -11,8 +12,8 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    @restaurant = Restaurant.new(restaurant_params)
-    @restaurant.save!
+    @restaurant = Restaurant.create!(restaurant_params)
+
     render json: @restaurant
   end
 
@@ -22,6 +23,7 @@ class RestaurantsController < ApplicationController
 
   def update
     @restaurant.update!(restaurant_params)
+
     render json: @restaurant
   end
 

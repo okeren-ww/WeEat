@@ -2,8 +2,9 @@ class CuisinesController < ApplicationController
   include ErrorConcern
 
   def index
-    @cuisines = Cuisine.all
-    render json: @cuisines.to_json
+    cuisines = Cuisine.all
+
+    render json: cuisines.to_json
   end
 
   def new
@@ -11,8 +12,8 @@ class CuisinesController < ApplicationController
   end
 
   def create
-    @cuisine = Cuisine.new(cuisine_params)
-    @cuisine.save!
+    @cuisine = Cuisine.create!(cuisine_params)
+
     render json: @cuisine
   end
 
@@ -22,12 +23,9 @@ class CuisinesController < ApplicationController
 
   def update
     @cuisine.update!(cuisine_params)
+
     render json: @cuisine
   end
-
-  def show; end
-
-  def edit; end
 
   private
 

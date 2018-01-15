@@ -6,7 +6,9 @@ class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.json
   def index
-    @reviews = Review.all
+    reviews = Review.all
+
+    render json: reviews.to_json
   end
 
   # GET /reviews/1
@@ -24,8 +26,8 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    @review = Review.new(review_params)
-    @review.save!
+    @review = Review.create!(review_params)
+
     render json: @review
   end
 
@@ -33,6 +35,7 @@ class ReviewsController < ApplicationController
   # PATCH/PUT /reviews/1.json
   def update
     @review.update!(review_params)
+
     render json: @review
   end
 
