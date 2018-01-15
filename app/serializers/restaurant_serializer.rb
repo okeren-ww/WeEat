@@ -1,7 +1,7 @@
 class RestaurantSerializer < ActiveModel::Serializer
   attributes :id,
              :name,
-             :cuisine,
+             :cuisine_id,
              :rating,
              :accepts_ten_bis,
              :address,

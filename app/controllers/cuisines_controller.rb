@@ -1,4 +1,4 @@
-class CuisineController < ApplicationController
+class CuisinesController < ApplicationController
   include ErrorConcern
 
   def index
@@ -13,7 +13,7 @@ class CuisineController < ApplicationController
   def create
     @cuisine = Cuisine.new(cuisine_params)
     @cuisine.save!
-    render :show, status: :created, cuisine: @cuisine
+    render json: @cuisine
   end
 
   def destroy
@@ -22,7 +22,7 @@ class CuisineController < ApplicationController
 
   def update
     @cuisine.update!(cuisine_params)
-    render :show, status: :ok, cuisine: @cuisine
+    render json: @cuisine
   end
 
   def show; end

@@ -13,7 +13,7 @@ class RestaurantsController < ApplicationController
   def create
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.save!
-    render :show, status: :created, restaurant: @restaurant
+    render json: @restaurant
   end
 
   def destroy
@@ -22,7 +22,7 @@ class RestaurantsController < ApplicationController
 
   def update
     @restaurant.update!(restaurant_params)
-    render :show, status: :ok, restaurant: @restaurant
+    render json: @restaurant
   end
 
   def show; end
@@ -37,7 +37,7 @@ class RestaurantsController < ApplicationController
 
   def restaurant_params
     params.require(:restaurant).permit(:name,
-                                       :cuisine,
+                                       :cuisine_id,
                                        :rating,
                                        :accepts_ten_bis,
                                        :address,

@@ -26,14 +26,14 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.save!
-    render :show, status: :created, review: @review
+    render json: @review
   end
 
   # PATCH/PUT /reviews/1
   # PATCH/PUT /reviews/1.json
   def update
     @review.update!(review_params)
-    render :show, status: :ok, review: @review
+    render json: @review
   end
 
   # DELETE /reviews/1
