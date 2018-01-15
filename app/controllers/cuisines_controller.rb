@@ -32,7 +32,7 @@ class CuisinesController < ApplicationController
   private
 
   def set_cuisine
-    @cuisine = Cuisine.find(params[:id])
+    @cuisine = Cuisine.find(params.require(:id))
   end
 
   def cuisine_params

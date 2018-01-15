@@ -46,7 +46,7 @@ class ReviewsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_review
-    @review = Review.find(params[:id])
+    @review = Review.find(params.require(:id))
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
