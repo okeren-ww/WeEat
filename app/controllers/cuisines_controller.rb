@@ -38,6 +38,4 @@ class CuisinesController < ApplicationController
   def cuisine_params
     params.require(:cuisine).permit(:name, :icon)
   end
-
-
 end

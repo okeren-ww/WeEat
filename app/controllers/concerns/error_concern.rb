@@ -2,7 +2,6 @@ module ErrorConcern
   extend ActiveSupport::Concern
 
   included do
-
     rescue_from(Exception) do |e|
       render_error(e.message, :internal_server_error)
     end
@@ -21,7 +20,5 @@ module ErrorConcern
     def render_error(message, status, info = {})
       render json: { message: message }.merge(info), status: status
     end
-
-
   end
 end
