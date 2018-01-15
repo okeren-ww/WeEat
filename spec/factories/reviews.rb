@@ -5,7 +5,5 @@ FactoryBot.define do
     comment { Faker::ChuckNorris.fact }
 
     association :restaurant, factory: :restaurant
-
   end
-
 end

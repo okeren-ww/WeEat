@@ -5,7 +5,7 @@ class Restaurant < ApplicationRecord
   validates :accepts_ten_bis, inclusion: [true, false]
   validates :max_delivery_time, numericality: [greater_than_or_equal_to: 0, less_than_or_equal_to: 180]
 
-   after_initialize :init
+  after_initialize :init
 
   def init
     self.rating ||= 0

@@ -4,11 +4,9 @@ FactoryBot.define do
     address 'Ibn Gabirol 30'
     max_delivery_time 15
     accepts_ten_bis true
-    cuisine 'American'
-
+    cuisine_id 1
 
     factory :restaurant_with_reviews do
-
       transient do
         dummy_ratings []
       end
@@ -17,10 +15,5 @@ FactoryBot.define do
         evaluator.dummy_ratings.each { |r| create(:review, restaurant: restaurant, rating: r) }
       end
     end
-
   end
-
-
-
-
 end

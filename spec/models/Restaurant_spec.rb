@@ -4,18 +4,16 @@ require 'faker'
 describe Restaurant do
   # Model member verification
   it { should validate_presence_of :name }
-  it { should validate_presence_of :cuisine }
+  it { should validate_presence_of :cuisine_id }
   it { should validate_presence_of :accepts_ten_bis }
   it { should validate_presence_of :address }
   it { should validate_presence_of :max_delivery_time }
   it { should have_many(:reviews) }
 
-
   context 'Restaurant with no parameters' do
     it 'Should Raise 7 errors' do
       restaurant = Restaurant.create
       expect(restaurant.errors.size).to eq(7)
-
     end
   end
 
@@ -28,7 +26,7 @@ describe Restaurant do
 
   context 'Restaurant with reviews' do
     ratings = []
-    (0..4).each do |i|
+    (0..4).each do |_i|
       ratings.push Faker::Number.between(0, 5)
     end
     # move faker to factory
@@ -37,5 +35,4 @@ describe Restaurant do
       expect(restaurant_with_reviews.rating).to eql(ratings.sum.fdiv(ratings.size))
     end
   end
-
 end

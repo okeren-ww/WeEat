@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 describe RestaurantsController do
-
-
   # ratings = []
   # (0..4).each do |i|
   #   ratings.push Faker::Number.between(0, 5)
@@ -20,5 +18,4 @@ describe RestaurantsController do
   #   end
   #
   # end
-
 end
