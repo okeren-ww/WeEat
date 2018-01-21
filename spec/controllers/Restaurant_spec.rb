@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe RestaurantsController, type: :controller do
   ratings = []
-  (0..4).each do |i|
+  (0..4).each do |_i|
     ratings.push Faker::Number.between(0, 5)
   end
 
@@ -19,14 +19,12 @@ describe RestaurantsController, type: :controller do
     end
 
     it 'Returns a JSON body with the expected Restaurant' do
-      expect(response.content_type).to eq("application/json")
+      expect(response.content_type).to eq('application/json')
       parsed_body = JSON.parse(response.body)
       expect(parsed_body.size).to be(2)
       compare_restaurants parsed_body.first.symbolize_keys, restaurant_with_reviews
       compare_restaurants parsed_body.second.symbolize_keys, restaurant_no_reviews
-
     end
-
   end
 
   describe 'Get show' do
@@ -38,11 +36,9 @@ describe RestaurantsController, type: :controller do
     end
 
     it 'Returns a JSON Body with one element and is expected Restaurant' do
-      expect(response.content_type).to eq("application/json")
+      expect(response.content_type).to eq('application/json')
       parsed_body = JSON.parse(response.body)
       compare_restaurants(parsed_body.symbolize_keys, restaurant_with_reviews)
-
     end
   end
-
 end
