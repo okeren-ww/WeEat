@@ -27,7 +27,10 @@ class RestaurantsController < ApplicationController
     render json: @restaurant
   end
 
-  def show; end
+  def show
+    set_restaurant
+    render json: @restaurant
+  end
 
   def edit; end
 
