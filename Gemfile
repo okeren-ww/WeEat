@@ -38,6 +38,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'rubocop', require: false
 
 gem 'faraday', '~> 0.13.1'
+gem 'faraday_middleware', '~> 0.12.2'
 gem 'hashie', '~> 3.5', '>= 3.5.7'
 gem 'sidekiq', '~> 5.0', '>= 5.0.5'
 
