@@ -1,6 +1,8 @@
 class RestaurantsController < ApplicationController
   include ErrorConcern
 
+  before_action :set_restaurant, only: %i(show edit update destroy)
+
   def index
     restaurants = Restaurant.all
 
@@ -28,7 +30,7 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    set_restaurant
+    # set_restaurant
     render json: @restaurant
   end
 

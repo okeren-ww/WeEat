@@ -39,6 +39,7 @@ gem 'rubocop', require: false
 group :development, :test do
   gem 'active_model_serializers', '~> 0.10.0'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'annotate', '~> 2.7', '>= 2.7.2'
   gem 'byebug', platforms: %i(mri mingw x64_mingw)
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
