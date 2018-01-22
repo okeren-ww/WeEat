@@ -11,8 +11,12 @@
 #  updated_at    :datetime         not null
 #
 
-class Review < ApplicationRecord
-  belongs_to :restaurant
-  validates :reviewer_name, :rating, :comment, presence: true
-  validates :rating, numericality: [greater_than_or_equal_to: 0, less_than_or_equal_to: 5]
+FactoryBot.define do
+  factory :review do
+    reviewer_name { Faker::SiliconValley.character }
+    rating { Faker::Number.between(0, 5) }
+    comment { Faker::ChuckNorris.fact }
+
+    association :restaurant, factory: :restaurant
+  end
 end

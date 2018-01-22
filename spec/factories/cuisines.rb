@@ -9,12 +9,10 @@
 #  updated_at :datetime         not null
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  name: MyString
-  icon: MyString
-
-two:
-  name: MyString
-  icon: MyString
+FactoryBot.define do
+  factory :cuisine do
+    id { Faker::Number.between(1, 100) }
+    name { Faker::Hipster.word }
+    icon { Faker::Witcher.monster }
+  end
+end
