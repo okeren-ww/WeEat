@@ -8,7 +8,7 @@ class RestaurantCuisineRow extends React.Component {
     return (
       <tr>
         <th colSpan="2" align="left">
-            <u>{cuisine}</u>
+          <u>{cuisine}</u>
         </th>
       </tr>
     );
@@ -104,15 +104,6 @@ FilterableRestaurantTable.propTypes = {
   restaurants: PropTypes.array,
 };
 
-
-const PRODUCTS = [
-  { category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football' },
-  { category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball' },
-  { category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball' },
-  { category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch' },
-  { category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5' },
-  { category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7' },
-];
 
 const RESTAURANTS = [
   { name: 'Joseph & Sons', cuisine: 'British', rating: 4, accepts_ten_bis: true, max_delivery_time: 20 },
