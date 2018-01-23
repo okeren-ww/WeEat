@@ -7,20 +7,7 @@
     "es6": true
   },
 
-  // TODO: Remove as many as possible.
-  "globals": {
-    "React": true,
-    "Redux": true,
-    "ReactRedux": true,
-    "moment": true,
-    "I18n": true,
-    "classNames": true,
-    "Cookies": true,
-    "$": true,
-    "_": true
-  },
-
-  "plugins": ["react"],
+  "plugins": ["react", "import"],
 
   "parserOptions": {
     "ecmaFeatures": {
@@ -51,11 +38,11 @@
 
   "rules": {
     //
-    //Possible Errors
+    // Possible Errors
     //
     // The following rules point out areas where you might have made mistakes.
     //
-    "comma-dangle": 2, // disallow or enforce trailing commas
+    "comma-dangle": [2, "always-multiline"], // disallow or enforce trailing commas
     "no-cond-assign": 2, // disallow assignment in conditional expressions
     "no-console": 1, // disallow use of console (off by default in the node environment)
     "no-constant-condition": 2, // disallow use of constant expressions in conditions
@@ -94,7 +81,7 @@
     "consistent-return": 2, // require return statements to either always or never specify values
     "curly": 2, // specify curly brace conventions for all control statements
     "default-case": 2, // require default case in switch statements (off by default)
-    "dot-notation": 2, // encourages use of dot notation whenever possible
+    "dot-notation": [2, { "allowPattern": "^[a-z]+(_[a-z]+)+$" }], // encourages use of dot notation whenever possible
     "eqeqeq": 2, // require the use of === and !==
     "guard-for-in": 2, // make sure for-in loops have an if statement (off by default)
     "no-alert": 2, // disallow the use of alert, confirm, and prompt
@@ -158,7 +145,7 @@
     "no-undef": 2, // disallow use of undeclared variables unless mentioned in a /*global */ block
     "no-undef-init": 2, // disallow use of undefined when initializing variables
     "no-undefined": 2, // disallow use of undefined variable (off by default)
-    "no-unused-vars": 2, // disallow declaration of variables that are not used in the code
+    "no-unused-vars": 1, // disallow declaration of variables that are not used in the code
     "no-use-before-define": 2, // disallow use of variables before they are defined
 
     //
@@ -168,7 +155,7 @@
     //
     "indent": [1, 2], // this option sets a specific tab width for your code (off by default)
     "brace-style": 1, // enforce one true brace style (off by default)
-    "camelcase": 1, // require camel case names
+    "camelcase": [1, { "properties": "never" }], // require camel case names
     "comma-spacing": [1, {"before": false, "after": true}], // enforce spacing before and after comma
     "comma-style": [1, "last"], // enforce one true comma style (off by default)
     "consistent-this": [1, "_this"], // enforces consistent naming when capturing the current execution context (off by default)
@@ -177,7 +164,6 @@
     "func-style": 0, // enforces use of function declarations or expressions (off by default)
     "key-spacing": [1, {"beforeColon": false, "afterColon": true}], // enforces spacing between keys and values in object literal properties
     "max-nested-callbacks": [1, 3], // specify the maximum depth callbacks can be nested (off by default)
-    "new-cap": [1, {newIsCap: true, capIsNew: false}], // require a capital letter for constructors
     "new-parens": 1, // disallow the omission of parentheses when invoking a constructor with no arguments
     "newline-after-var": 0, // allow/disallow an empty newline after var statement (off by default)
     "no-array-constructor": 1, // disallow use of the Array constructor
@@ -237,20 +223,43 @@
     //
     // React specific linting rules for ESLint
     //
-    "react/display-name": 0, // Prevent missing displayName in a React component definition
     "jsx-quotes": [2, "prefer-double"], // Enforce quote style for JSX attributes
-    // TODO: Change jsx-no-undef back to 2.
-    "react/jsx-no-undef": 1, // Disallow undeclared variables in JSX
+    "react/display-name": 0, // Prevent missing displayName in a React component definition
+    "react/jsx-filename-extension": 1, // component files should be .jsx
+    "react/jsx-no-duplicate-props": 2,
+    "react/jsx-no-target-blank": 2,
+    "react/jsx-no-undef": 2, // Disallow undeclared variables in JSX
     "react/jsx-sort-props": 0, // Enforce props alphabetical sorting
     "react/jsx-uses-react": 2, // Prevent React to be incorrectly marked as unused
     "react/jsx-uses-vars": 2, // Prevent variables used in JSX to be incorrectly marked as unused
-    "react/no-did-mount-set-state": [2, "allow-in-func"], // Prevent usage of setState in componentDidMount
+    "react/no-array-index-key": 2, // don't allow `key={index}`
+    "react/no-danger": 1, // don't allow dangerous react props like raw html
+    "react/no-deprecated": 2,
+    "react/no-did-mount-set-state": 2, // Prevent usage of setState in componentDidMount
     "react/no-did-update-set-state": 2, // Prevent usage of setState in componentDidUpdate
+    "react/no-direct-mutation-state": 2,
     "react/no-multi-comp": 0, // Prevent multiple component definition per file
     "react/no-unknown-property": 2, // Prevent usage of unknown DOM property
+    "react/prefer-es6-class": [2, "always"],
+    "react/prefer-stateless-function": 1,
     "react/prop-types": 2, // Prevent missing props validation in a React component definition
     "react/react-in-jsx-scope": 2, // Prevent missing React when using JSX
+    "react/require-default-props": 0, // off
     "react/self-closing-comp": 2, // Prevent extra closing tags for components without children
+    "react/sort-comp": 1, // component native methods should be ordered
     "react/wrap-multilines": 2, // Prevent missing parentheses around multilines JSX
+
+    // Imports
+    //
+    // Can't do next one because of alias in webpack
+    //
+    "import/no-unresolved": 0,
+    "import/extensions": 2,
+
+    // https://github.com/benmosher/eslint-plugin-import/issues/340
+    "import/no-extraneous-dependencies": 0,
+
+    // https://github.com/eslint/eslint/issues/6876 SFC's marked as invalid
+    "new-cap": 0
   }
 }
