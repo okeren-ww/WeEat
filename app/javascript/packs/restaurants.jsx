@@ -7,13 +7,17 @@ class RestaurantCuisineRow extends React.Component {
     const cuisine = this.props.cuisine;
     return (
       <tr>
-        <th colSpan="2">
-          {cuisine}
+        <th colSpan="2" align="left">
+            <u>{cuisine}</u>
         </th>
       </tr>
     );
   }
 }
+
+RestaurantCuisineRow.propTypes = {
+  cuisine: PropTypes.string,
+};
 
 class RestaurantRow extends React.Component {
   render() {
@@ -27,11 +31,15 @@ class RestaurantRow extends React.Component {
     return (
       <tr>
         <td>{name}</td>
-        <td>{restaurant.max_delivery_time}</td>
+        <td>{restaurant.max_delivery_time} minutes</td>
       </tr>
     );
   }
 }
+
+RestaurantRow.propTypes = {
+  restaurant: PropTypes.object,
+};
 
 class ProductTable extends React.Component {
   render() {
@@ -62,6 +70,10 @@ class ProductTable extends React.Component {
   }
 }
 
+RestaurantRow.propTypes = {
+  restaurants: PropTypes.array,
+};
+
 class SearchBar extends React.Component {
   render() {
     return (
@@ -87,6 +99,10 @@ class FilterableRestaurantTable extends React.Component {
     );
   }
 }
+
+FilterableRestaurantTable.propTypes = {
+  restaurants: PropTypes.array,
+};
 
 
 const PRODUCTS = [
