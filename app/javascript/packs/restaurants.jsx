@@ -70,7 +70,7 @@ class ProductTable extends React.Component {
   }
 }
 
-RestaurantRow.propTypes = {
+ProductTable.propTypes = {
   restaurants: PropTypes.array,
 };
 
