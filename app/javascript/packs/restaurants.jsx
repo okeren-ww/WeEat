@@ -2,32 +2,32 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
-class ProductCategoryRow extends React.Component {
+class RestaurantCuisineRow extends React.Component {
   render() {
-    const category = this.props.category;
+    const cuisine = this.props.cuisine;
     return (
       <tr>
         <th colSpan="2">
-          {category}
+          {cuisine}
         </th>
       </tr>
     );
   }
 }
 
-class ProductRow extends React.Component {
+class RestaurantRow extends React.Component {
   render() {
-    const product = this.props.product;
-    const name = product.stocked ?
-      product.name :
+    const restaurant = this.props.restaurant;
+    const name = restaurant.accepts_ten_bis ?
+      restaurant.name :
       (<span style={{ color: 'red' }}>
-        {product.name}
+        {restaurant.name}
       </span>);
 
     return (
       <tr>
         <td>{name}</td>
-        <td>{product.price}</td>
+        <td>{restaurant.max_delivery_time}</td>
       </tr>
     );
   }
@@ -36,32 +36,26 @@ class ProductRow extends React.Component {
 class ProductTable extends React.Component {
   render() {
     const rows = [];
-    let lastCategory = null;
+    let lastCuisine = null;
 
-    this.props.products.forEach((product) => {
-      if (product.category !== lastCategory) {
+    this.props.restaurants.forEach((restaurant) => {
+      if (restaurant.cuisine !== lastCuisine) {
         rows.push(
-          <ProductCategoryRow
-            category={product.category}
-            key={product.category} />
+          <RestaurantCuisineRow
+            cuisine={restaurant.cuisine}
+            key={restaurant.cuisine} />
         );
+        rows.push(
+          <RestaurantRow
+            restaurant={restaurant}
+            key={restaurant.name} />
+        );
+        lastCuisine = restaurant.cuisine;
       }
-      rows.push(
-        <ProductRow
-          product={product}
-          key={product.name} />
-      );
-      lastCategory = product.category;
     });
 
     return (
       <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Price</th>
-          </tr>
-        </thead>
         <tbody>{rows}</tbody>
       </table>
     );
@@ -76,19 +70,19 @@ class SearchBar extends React.Component {
         <p>
           <input type="checkbox" />
           {' '}
-                    Only show products in stock
+                    Only Show Restaurants That Accept 10bis
         </p>
       </form>
     );
   }
 }
 
-class FilterableProductTable extends React.Component {
+class FilterableRestaurantTable extends React.Component {
   render() {
     return (
       <div>
         <SearchBar />
-        <ProductTable products={this.props.products} />
+        <ProductTable restaurants={this.props.restaurants} />
       </div>
     );
   }
@@ -104,7 +98,14 @@ const PRODUCTS = [
   { category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7' },
 ];
 
+const RESTAURANTS = [
+  { name: 'Joseph & Sons', cuisine: 'British', rating: 4, accepts_ten_bis: true, max_delivery_time: 20 },
+  { name: 'Vitrina', cuisine: 'American', rating: 4, accepts_ten_bis: false, max_delivery_time: 20 },
+  { name: 'Container', cuisine: 'Humous', rating: 4, accepts_ten_bis: true, max_delivery_time: 5 },
+  { name: 'Healthy: Israeli Salad', cuisine: 'Salad', rating: 3, accepts_ten_bis: true, max_delivery_time: 15 },
+];
+
 ReactDOM.render(
-  <FilterableProductTable products={PRODUCTS} />,
+  <FilterableRestaurantTable restaurants={RESTAURANTS} />,
   document.getElementById('container')
 );
