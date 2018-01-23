@@ -7,9 +7,8 @@ namespace :zomato_api do
     # Clear Sidekiq queue
     Sidekiq::RetrySet.new.clear
     Sidekiq::ScheduledSet.new.clear
-    Sidekiq::Stats.new.reset
     Sidekiq.redis(&:flushall)
 
-    ZomatoWorker.perform_async
+    ZomatoWebFetcher.perform_async
   end
 end

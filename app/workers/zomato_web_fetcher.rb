@@ -1,8 +1,20 @@
 class ZomatoWebFetcher
   require 'faraday_middleware'
+  include Sidekiq::Worker
 
   CITY_ID = 280
   NUM_OF_RESTAURANTS = 1
+
+  def perform
+    cuisines = fetch_cuisines_list
+    cuisines.each do |cuisine|
+      cuisine_id = cuisine['cuisine']['cuisine_id']
+      restaurants = fetch_restaurant(cuisine_id)
+      restaurants.each do |restaurant|
+        fetch_review restaurant['restaurant']['id']
+      end
+    end
+  end
 
   def initialize
     @conn = Faraday.new(url: ENV['ZOMATO_ROOT_URL']) do |c|
@@ -12,9 +24,9 @@ class ZomatoWebFetcher
     end
   end
 
-  def fetch_cuisines_list
+  def fetch_cuisines_list(city_id = CITY_ID)
     cuisines = @conn.get ENV['ZOMATO_API_URL'] + '/cuisines' do |request|
-      request.params['city_id'] = CITY_ID
+      request.params['city_id'] = city_id
     end
 
     cuisines_body = JSON.parse(cuisines.body)
