@@ -232,6 +232,7 @@
     "react/jsx-sort-props": 0, // Enforce props alphabetical sorting
     "react/jsx-uses-react": 2, // Prevent React to be incorrectly marked as unused
     "react/jsx-uses-vars": 2, // Prevent variables used in JSX to be incorrectly marked as unused
+    "react/jsx-space-before-closing": [2, "always"],
     "react/no-array-index-key": 2, // don't allow `key={index}`
     "react/no-danger": 1, // don't allow dangerous react props like raw html
     "react/no-deprecated": 2,
@@ -247,7 +248,7 @@
     "react/require-default-props": 0, // off
     "react/self-closing-comp": 2, // Prevent extra closing tags for components without children
     "react/sort-comp": 1, // component native methods should be ordered
-    "react/wrap-multilines": 2, // Prevent missing parentheses around multilines JSX
+    "react/jsx-wrap-multilines": 2, // Prevent missing parentheses around multilines JSX
 
     // Imports
     //
