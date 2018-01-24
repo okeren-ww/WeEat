@@ -5,13 +5,27 @@ body {
   padding: 5px
 }
 
+@font-face{
+  font-family: 'MyWebFont';
+  src: url('./cuisine-webfont/efcuisines-regular-webfont.eot');
+  src: url('./cuisine-webfont/efcuisines-regular-webfont.eot?#iefix') format('embedded-opentype'),
+  url('./cuisine-webfont/efcuisines-regular-webfont.woff') format('woff'),
+  url('./cuisine-webfont/efcuisines-regular-webfont.ttf') format('truetype'),
+  url('./cuisine-webfont/efcuisines-regular-webfont.svg#webfont') format('svg');
+}
+
 .accepts_ten_bis {
   content: image_url('tenbis.png');
-  padding: 10px;
+  padding: 0px;
   width: 20px;
 }
 
 .not_accepts_ten_bis {
   @extend .accepts_ten_bis;
   filter: grayscale(100%) opacity(20%);
+}
+
+.cuisine_icon {
+  width: 40px;
+  padding: 0px;
 }

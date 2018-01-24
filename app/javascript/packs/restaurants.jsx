@@ -18,14 +18,13 @@ class RestaurantRow extends React.Component {
 
   render() {
     const restaurant = this.props.restaurant;
-    return (
-      <tr>
-        <td align="left">{restaurant.name}</td>
-        <td align="left">{restaurant.address}</td>
-          <td><img className={restaurant.accepts_ten_bis ? 'accepts_ten_bis' : 'not_accepts_ten_bis'} /></td>
-        <td align="right"> {RestaurantRow.calcStars(restaurant.rating)}</td>
-      </tr>
-    );
+    const imagePath = 'images/' + restaurant.cuisine_icon;
+    return (<tr>
+      <td align="left" valign="middle">{restaurant.name}</td>
+      <td><img className="cuisine_icon" src={imagePath} alt="Smiley face" height="42" width="42" /></td>
+      <td><img className={restaurant.accepts_ten_bis ? 'accepts_ten_bis' : 'not_accepts_ten_bis'} /></td>
+      <td align="right" valign="middle"> {RestaurantRow.calcStars(restaurant.rating)}</td>
+    </tr>);
   }
 }
 
@@ -82,6 +81,10 @@ class FilterableRestaurantTable extends React.Component {
     fetch('http://localhost:3000/restaurants.json')
       .then(response => response.json())
       .then(response => this.setState({ restaurants: response }));
+
+    fetch('http://localhost:3000/cuisines.json')
+      .then(response => response.json())
+      .then(response => this.setState({ cuisines: response }));
   }
 
 
