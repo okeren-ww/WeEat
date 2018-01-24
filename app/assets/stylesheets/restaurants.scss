@@ -4,3 +4,14 @@
 body {
   padding: 5px
 }
+
+.accepts_ten_bis {
+  content: image_url('tenbis.png');
+  padding: 10px;
+  width: 20px;
+}
+
+.not_accepts_ten_bis {
+  @extend .accepts_ten_bis;
+  filter: grayscale(100%) opacity(20%);
+}

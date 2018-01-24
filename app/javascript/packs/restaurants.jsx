@@ -4,11 +4,7 @@ import PropTypes from 'prop-types';
 
 
 class RestaurantRow extends React.Component {
-  constructor() {
-    super();
-  }
-
-  calcStars(rating) {
+  static calcStars(rating) {
     let stars = '';
     for (let i = 0; i < rating; i = i + 1) {
       stars = stars + '★';
@@ -16,13 +12,18 @@ class RestaurantRow extends React.Component {
     return stars;
   }
 
+  constructor() {
+    super();
+  }
+
   render() {
     const restaurant = this.props.restaurant;
     return (
       <tr>
-        <td>{restaurant.name}</td>
-        <td>{restaurant.address}</td>
-        <td align="right"> {this.calcStars(restaurant.rating)}</td>
+        <td align="left">{restaurant.name}</td>
+        <td align="left">{restaurant.address}</td>
+          <td><img className={restaurant.accepts_ten_bis ? 'accepts_ten_bis' : 'not_accepts_ten_bis'} /></td>
+        <td align="right"> {RestaurantRow.calcStars(restaurant.rating)}</td>
       </tr>
     );
   }
@@ -54,6 +55,7 @@ class RestaurantsTable extends React.Component {
           <tr>
             <th align="left">Name</th>
             <th align="left">Address</th>
+            <th align="left">Ten Bis</th>
             <th align="right">Rating</th>
           </tr>
         </thead>
