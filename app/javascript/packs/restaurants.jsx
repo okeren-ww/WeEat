@@ -3,6 +3,63 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
 
+class RestaurantRow extends React.Component {
+  constructor() {
+    super();
+  }
+
+  render() {
+    const restaurant = this.props.restaurant;
+    return (
+      <tr>
+        <td>{restaurant.name}</td>
+        <td>{restaurant.address}</td>
+        <td align="right">{restaurant.rating}</td>
+      </tr>
+    );
+  }
+}
+
+RestaurantRow.propTypes = {
+  restaurant: PropTypes.object,
+};
+
+class RestaurantsTable extends React.Component {
+  constructor() {
+    super();
+  }
+
+  render() {
+    const rows = [];
+    this.props.restaurants.forEach((restaurant) => {
+      rows.push(
+        <RestaurantRow
+          restaurant = {restaurant}
+          key = {restaurant.id}
+        />
+      );
+    });
+
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th align="left">Name</th>
+            <th align="left">Address</th>
+            <th align="right">Rating</th>
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </table>
+    );
+  }
+}
+
+RestaurantsTable.propTypes = {
+  restaurants: PropTypes.array,
+};
+
+
 class FilterableRestaurantTable extends React.Component {
   constructor() {
     super();
@@ -23,21 +80,7 @@ class FilterableRestaurantTable extends React.Component {
 
     if (restaurantList && restaurantList.length > 0) {
       return (
-        <div>
-          <div className="restaurantList">
-            <div className="scrollbar" id="style-default">
-              {restaurantList.map(restaurant =>
-                (<div className="restaurantItem" key={restaurant.name}>
-                  <div className="restaurant">
-                    {restaurant.rating}  {restaurant.name}<br />
-                    {restaurant.address}
-                  </div>
-                  <div className="cuisine">{restaurant.cuisine_id}</div>
-                </div>)
-              )}
-            </div>
-          </div>
-        </div>
+        <RestaurantsTable restaurants = {this.state.restaurants} />
       );
     }
     // error handling
@@ -45,21 +88,12 @@ class FilterableRestaurantTable extends React.Component {
       <h1>No restaurants found</h1>
     );
   }
-
-  // render() {
-  //     return (
-  //         <div>
-  //             <SearchBar />
-  //             <ProductTable restaurants={this.state.restaurants} />
-  //         </div>
-  //     );
-  // }
 }
 
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-      <FilterableRestaurantTable />,
+    <FilterableRestaurantTable />,
     document.body.appendChild(document.createElement('div')),
   );
 });
