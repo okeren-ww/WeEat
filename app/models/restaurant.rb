@@ -30,4 +30,8 @@ class Restaurant < ApplicationRecord
   def rating
     reviews.empty? ? 0 : reviews.average(:rating)
   end
+
+  def cuisine_icon
+    cuisine.icon
+  end
 end
