@@ -8,13 +8,21 @@ class RestaurantRow extends React.Component {
     super();
   }
 
+  calcStars(rating) {
+    let stars = '';
+    for (let i = 0; i < rating; i = i + 1) {
+      stars = stars + '★';
+    }
+    return stars;
+  }
+
   render() {
     const restaurant = this.props.restaurant;
     return (
       <tr>
         <td>{restaurant.name}</td>
         <td>{restaurant.address}</td>
-        <td align="right">{restaurant.rating}</td>
+        <td align="right"> {this.calcStars(restaurant.rating)}</td>
       </tr>
     );
   }
