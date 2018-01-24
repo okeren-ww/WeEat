@@ -3,11 +3,8 @@ class RestaurantsController < ApplicationController
 
   before_action :set_restaurant, only: %i(show edit update destroy)
 
-  layout "index"
-
   def index
-    # restaurants = Restaurant.all
-
+    @restaurants = Restaurant.all
     # render json: restaurants.to_json
   end
 

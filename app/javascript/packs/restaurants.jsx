@@ -2,117 +2,64 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
-class RestaurantCuisineRow extends React.Component {
-  render() {
-    const cuisine = this.props.cuisine;
-    return (
-      <tr>
-        <th colSpan="2" align="left">
-          <u>{cuisine}</u>
-        </th>
-      </tr>
-    );
-  }
-}
-
-RestaurantCuisineRow.propTypes = {
-  cuisine: PropTypes.string,
-};
-
-class RestaurantRow extends React.Component {
-  render() {
-    const restaurant = this.props.restaurant;
-    const name = restaurant.accepts_ten_bis ?
-      restaurant.name :
-      (<span style={{ color: 'red' }}>
-        {restaurant.name}
-      </span>);
-
-    return (
-      <tr>
-        <td>{name}</td>
-        <td>{restaurant.max_delivery_time} minutes</td>
-      </tr>
-    );
-  }
-}
-
-RestaurantRow.propTypes = {
-  restaurant: PropTypes.object,
-};
-
-class ProductTable extends React.Component {
-  render() {
-    const rows = [];
-    let lastCuisine = null;
-
-    this.props.restaurants.forEach((restaurant) => {
-      if (restaurant.cuisine !== lastCuisine) {
-        rows.push(
-          <RestaurantCuisineRow
-            cuisine={restaurant.cuisine}
-            key={restaurant.cuisine} />
-        );
-        rows.push(
-          <RestaurantRow
-            restaurant={restaurant}
-            key={restaurant.name} />
-        );
-        lastCuisine = restaurant.cuisine;
-      }
-    });
-
-    return (
-      <table>
-        <tbody>{rows}</tbody>
-      </table>
-    );
-  }
-}
-
-ProductTable.propTypes = {
-  restaurants: PropTypes.array,
-};
-
-class SearchBar extends React.Component {
-  render() {
-    return (
-      <form>
-        <input type="text" placeholder="Search..." />
-        <p>
-          <input type="checkbox" />
-          {' '}
-                    Only Show Restaurants That Accept 10bis
-        </p>
-      </form>
-    );
-  }
-}
 
 class FilterableRestaurantTable extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      restaurants: [],
+    };
+  }
+
+  componentWillMount() {
+    fetch('http://localhost:3000/restaurants.json')
+      .then(response => response.json())
+      .then(response => this.setState({ restaurants: response }));
+  }
+
+
   render() {
+    let restaurantList = this.state.restaurants;
+
+    if (restaurantList && restaurantList.length > 0) {
+      return (
+        <div>
+          <div className="restaurantList">
+            <div className="scrollbar" id="style-default">
+              {restaurantList.map(restaurant =>
+                (<div className="restaurantItem" key={restaurant.name}>
+                  <div className="restaurant">
+                    {restaurant.rating}  {restaurant.name}<br />
+                    {restaurant.address}
+                  </div>
+                  <div className="cuisine">{restaurant.cuisine_id}</div>
+                </div>)
+              )}
+            </div>
+          </div>
+        </div>
+      );
+    }
+    // error handling
     return (
-      <div>
-        <SearchBar />
-        <ProductTable restaurants={this.props.restaurants} />
-      </div>
+      <h1>No restaurants found</h1>
     );
   }
+
+  // render() {
+  //     return (
+  //         <div>
+  //             <SearchBar />
+  //             <ProductTable restaurants={this.state.restaurants} />
+  //         </div>
+  //     );
+  // }
 }
 
-FilterableRestaurantTable.propTypes = {
-  restaurants: PropTypes.array,
-};
 
-
-const RESTAURANTS = [
-  { name: 'Joseph & Sons', cuisine: 'British', rating: 4, accepts_ten_bis: true, max_delivery_time: 20 },
-  { name: 'Vitrina', cuisine: 'American', rating: 4, accepts_ten_bis: false, max_delivery_time: 20 },
-  { name: 'Container', cuisine: 'Humous', rating: 4, accepts_ten_bis: true, max_delivery_time: 5 },
-  { name: 'Healthy: Israeli Salad', cuisine: 'Salad', rating: 3, accepts_ten_bis: true, max_delivery_time: 15 },
-];
-
-ReactDOM.render(
-  <FilterableRestaurantTable restaurants={RESTAURANTS} />,
-  document.getElementById('container')
-);
+document.addEventListener('DOMContentLoaded', () => {
+  ReactDOM.render(
+      <FilterableRestaurantTable />,
+    document.body.appendChild(document.createElement('div')),
+  );
+});
