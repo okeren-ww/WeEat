@@ -29,3 +29,19 @@ body {
   width: 40px;
   padding: 0px;
 }
+
+.page-header {
+  margin-top: -20px;
+  width: 100%;
+}
+
+.RestaurantsLeft, .MapRight{
+  float: left;
+}
+
+.MapRight{
+  margin-right: 80px;
+  height: 600px;
+}
+
+.rowC{display:flex; flex-direction:row;}
