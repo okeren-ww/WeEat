@@ -40,8 +40,12 @@ body {
 }
 
 .MapRight{
-  margin-right: 80px;
-  height: 600px;
+  margin-left: 80px;
+  min-height: 100%;
 }
 
-.rowC{display:flex; flex-direction:row;}
+.rowC{
+  display:flex;
+  flex-direction:row;
+  min-height: 100%;
+}

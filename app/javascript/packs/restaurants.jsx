@@ -23,9 +23,12 @@ class RestaurantsContainer extends React.Component {
       <div>
         <Header />
         <div className="rowC">
+          <div className="RestaurantsLeft">
             <FilterableRestaurantTable restaurants = {this.state.restaurants} />
+          </div>
+          <div className="MapRight">
             <Map />
-
+          </div>
         </div>
 
       </div>
