@@ -22,7 +22,7 @@ class RestaurantFactory
       accepts_ten_bis true
 
       association :cuisine, factory: :cuisine
- 
+
       factory :restaurant_with_reviews do
         transient do
           dummy_ratings []

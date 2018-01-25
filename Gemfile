@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record
@@ -36,6 +37,11 @@ gem 'jbuilder', '~> 2.5'
 #
 gem 'rubocop', require: false
 
+gem 'faraday', '~> 0.13.1'
+gem 'faraday_middleware', '~> 0.12.2'
+gem 'hashie', '~> 3.5', '>= 3.5.7'
+gem 'sidekiq', '~> 5.0', '>= 5.0.5'
+
 group :development, :test do
   gem 'active_model_serializers', '~> 0.10.0'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -43,6 +49,7 @@ group :development, :test do
   gem 'byebug', platforms: %i(mri mingw x64_mingw)
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
+  gem 'dotenv-rails', groups: %i(development test)
   gem 'factory_bot_rails'
   gem 'faker', '~> 1.8', '>= 1.8.7'
   gem 'rspec-rails', '~> 3.7'

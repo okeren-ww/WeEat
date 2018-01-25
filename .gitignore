@@ -30,3 +30,6 @@
 
 #Ignore Schema.rb
 schema.rb
+
+#Ignore environment variables file
+.env
