@@ -1,5 +1,4 @@
 class ZomatoWebFetcher
-  require 'faraday_middleware'
   include Sidekiq::Worker
 
   CITY_ID = 280
