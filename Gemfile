@@ -4,7 +4,7 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
-gem 'dotenv-rails', groups: %i(development test)
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
@@ -49,6 +49,7 @@ group :development, :test do
   gem 'byebug', platforms: %i(mri mingw x64_mingw)
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
+  gem 'dotenv-rails', groups: %i(development test)
   gem 'factory_bot_rails'
   gem 'faker', '~> 1.8', '>= 1.8.7'
   gem 'rspec-rails', '~> 3.7'
