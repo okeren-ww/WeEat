@@ -31,113 +31,65 @@ RestaurantRow.propTypes = {
   restaurant: PropTypes.object,
 };
 
-class RestaurantsTable extends React.Component {
-  constructor() {
-    super();
-  }
-
-  render() {
-    const rows = [];
-    this.props.restaurants.forEach((restaurant) => {
-        if(this.props.onlyTenBis && !restaurant.accepts_ten_bis){
-            return;
-        }
-
-      rows.push(
-        <RestaurantRow
-          restaurant = {restaurant}
-          key = {restaurant.id}
-        />
-      );
-    });
-
-    return (
-      <table>
-        <thead>
-          <tr>
-            <th align="left">Cuisine</th>
-            <th align="left">Name</th>
-            <th align="left">Ten Bis</th>
-            <th align="right">Rating</th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </table>
-    );
-  }
-}
-
-RestaurantsTable.propTypes = {
-  restaurants: PropTypes.array,
-};
-
-
-class FilterBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
-    this.handleOnlyTenBisChange = this.handleOnlyTenBisChange.bind(this);
-  }
-
-  handleFilterTextChange(e) {
-    this.props.onFilterTextChange(e.target.value);
-  }
-
-  handleOnlyTenBisChange(e) {
-    this.props.onTenBisChange(e.target.checked);
-  }
-
-  render() {
-    return (
-      <form>
-        <input
-          type="text"
-          placeholder="Search..."
-          value={this.props.filterText}
-          onChange={this.handleFilterTextChange} />
-        <p>
-          <input
-            type="checkbox"
-            checked={this.props.onlyTenBis}
-            onChange={this.handleOnlyTenBisChange} />
-          {' '}
-                Only show Restaurants that accept ten bis
-        </p>
-      </form>
-    );
-  }
-}
 
 class FilterableRestaurantTable extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
-        this.handleOnlyTenBisChange = this.handleOnlyTenBisChange.bind(this);
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    handleFilterTextChange(e) {
-        this.props.onFilterTextChange(e);
-    }
-
-    handleOnlyTenBisChange(e) {
-        this.props.onTenBisChange(e);
-    }
-    render() {
+  render() {
     let restaurantList = this.props.restaurants;
-    let filterText = this.props.filterText;
+    const filterText = this.props.filterText;
+    const filterCuisine = this.props.filterCuisine;
+    const filterRating = this.props.filterRating;
+    const filterTenBis = this.props.filterTenBis;
+    if (filterCuisine !== 'All') {
+      restaurantList = restaurantList.filter(function (rest) {
+        return parseInt(rest.cuisine_id, 10) === parseInt(filterCuisine, 10);
+      });
+    }
+    if (filterRating !== 'All') {
+      restaurantList = restaurantList.filter(function (rest) {
+        let ratingFloor = (Math.floor(rest.rating)).toString();
+        return ratingFloor === filterRating;
+      });
+    }
+    if (filterText !== '') {
+      restaurantList = restaurantList.filter(function (rest) {
+        return rest.name.toLowerCase().includes(filterText.toLowerCase());
+      });
+    }
+    restaurantList = restaurantList.filter(function (rest) {
+      if (filterTenBis && rest.accepts_ten_bis) {
+        return true;
+      }
+      return !(filterTenBis && !rest.accepts_ten_bis);
+    });
+
 
     if (restaurantList && restaurantList.length > 0) {
-      return (
-        <div>
-          <FilterBar filterText = {filterText}
-            onlyTenBis = {this.props.onlyTenBis}
-                     onFilterTextChange = {this.handleFilterTextChange}
-                     onTenBisChange = {this.handleOnlyTenBisChange}
+      const rows = [];
+      restaurantList.forEach((restaurant) => {
+        rows.push(
+          <RestaurantRow
+            restaurant = {restaurant}
+            key = {restaurant.id}
           />
-          <RestaurantsTable
-            restaurants = {restaurantList}
-            onlyTenBis = {this.props.onlyTenBis} />
-        </div>
+        );
+      });
+
+      return (
+        <table>
+          <thead>
+            <tr>
+              <th align="left">Cuisine</th>
+              <th align="left">Name</th>
+              <th align="left">Ten Bis</th>
+              <th align="right">Rating</th>
+            </tr>
+          </thead>
+          <tbody>{rows}</tbody>
+        </table>
       );
     }
     // error handling
@@ -149,6 +101,11 @@ class FilterableRestaurantTable extends React.Component {
 
 FilterableRestaurantTable.propTypes = {
   restaurants: PropTypes.array,
+  filterText: PropTypes.string,
+  filterCuisine: PropTypes.string,
+  filterRating: PropTypes.string,
+  filterTenBis: PropTypes.bool,
+
 };
 
 export default FilterableRestaurantTable;

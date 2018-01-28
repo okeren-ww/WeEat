@@ -35,8 +35,20 @@ body {
   min-height: 100%;
 }
 
-.rowC{
+.RestaurantsContainer{
   display:flex;
   flex-direction:row;
   min-height: 100%;
+}
+.Filters{
+  background-image: url('TenBisBig.png');
+  background-repeat: no-repeat;
+  background-size: auto;
+
+  height: 90px;
+  width: 1500px;
+  display:flex;
+  flex-direction:row;
+  min-height: 100%;
+  position: relative;
 }

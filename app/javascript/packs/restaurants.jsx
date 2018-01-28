@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import FilterableRestaurantTable from './components/RestaurantsList';
 import Header from './components/Header';
 import Map from './components/Map';
+import { TenBisSelect, RatingSelect, CuisineSelect, TextFilter } from './components/Filters';
 
 class RestaurantsContainer extends React.Component {
   constructor() {
@@ -11,9 +12,9 @@ class RestaurantsContainer extends React.Component {
       restaurants: [],
       filterText: '',
       onlyTenBis: false,
+      ratingFilter: 'All',
+      cuisineFilter: 'All',
     };
-    this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
-    this.handleTenBisChange = this.handleTenBisChange.bind(this);
   }
 
   componentWillMount() {
@@ -23,30 +24,47 @@ class RestaurantsContainer extends React.Component {
   }
 
 
-  handleFilterTextChange(filterText) {
+  handleOnTextFilterChange(e) {
     this.setState({
-      filterText: filterText,
+      filterText: e.target.value,
     });
   }
 
-  handleTenBisChange(onlyTenBis) {
+  handleOnTenBisChange(e) {
     this.setState({
-        onlyTenBis: onlyTenBis,
+      onlyTenBis: e.target.checked,
+    });
+  }
+
+  handleOnChangeRating(e) {
+    this.setState({
+      ratingFilter: e.target.value,
+    });
+  }
+
+  handleOnChangeCuisine(e) {
+    this.setState({
+      cuisineFilter: e.target.value,
     });
   }
 
   render() {
     return (
       <div>
-        <Header />
-        <div className="rowC">
+        <div className="Filters">
+          <TextFilter handleOnFilterTextChange = {this.handleOnTextFilterChange.bind(this)} />
+            <CuisineSelect handleOnChange={this.handleOnChangeCuisine.bind(this)} />
+            <RatingSelect handleOnChange={this.handleOnChangeRating.bind(this)} />
+            <TenBisSelect handleTenBisChange={this.handleOnTenBisChange.bind(this)} />
+        </div>
+        <div className="RestaurantsContainer">
           <div className="RestaurantsLeft">
             <FilterableRestaurantTable
               restaurants = {this.state.restaurants}
               filterText = {this.state.filterText}
-              onlyTenBis = {this.state.onlyTenBis}
-              onFilterTextChange={this.handleFilterTextChange}
-              onTenBisChange={this.handleTenBisChange}
+              filterCuisine = {this.state.cuisineFilter}
+              filterRating = {this.state.ratingFilter}
+              filterTenBis = {this.state.onlyTenBis}
             />
           </div>
           <div className="MapRight">
