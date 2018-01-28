@@ -104,5 +104,5 @@ export class TextFilter extends React.Component {
 
 TextFilter.propTypes = {
   filterText: PropTypes.string,
-    handleOnFilterTextChange: PropTypes.func,
+  handleOnFilterTextChange: PropTypes.func,
 };
