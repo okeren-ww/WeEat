@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import FilterableRestaurantTable from './components/RestaurantsList';
-import Header from './components/Header';
 import Map from './components/Map';
 import { TenBisSelect, RatingSelect, CuisineSelect, TextFilter } from './components/Filters';
 
@@ -53,9 +52,9 @@ class RestaurantsContainer extends React.Component {
       <div>
         <div className="Filters">
           <TextFilter handleOnFilterTextChange = {this.handleOnTextFilterChange.bind(this)} />
-            <CuisineSelect handleOnChange={this.handleOnChangeCuisine.bind(this)} />
-            <RatingSelect handleOnChange={this.handleOnChangeRating.bind(this)} />
-            <TenBisSelect handleTenBisChange={this.handleOnTenBisChange.bind(this)} />
+          <CuisineSelect handleOnChange={this.handleOnChangeCuisine.bind(this)} />
+          <RatingSelect handleOnChange={this.handleOnChangeRating.bind(this)} />
+          <TenBisSelect handleTenBisChange={this.handleOnTenBisChange.bind(this)} />
         </div>
         <div className="RestaurantsContainer">
           <div className="RestaurantsLeft">
