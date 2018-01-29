@@ -19,7 +19,7 @@ class RestaurantRow extends React.Component {
     const restaurant = this.props.restaurant;
     const imagePath = 'images/' + restaurant.cuisine_icon;
     return (<tr>
-      <td><img className="cuisine_icon" src={imagePath} alt="Smiley face" height="42" width="42" /></td>
+      <td><img className="cuisine_icon" src={imagePath} alt={restaurant.cuisine_icon} height="42" width="42" /></td>
       <td align="left" valign="middle">{restaurant.name}</td>
       <td><img className={restaurant.accepts_ten_bis ? 'accepts_ten_bis' : 'not_accepts_ten_bis'} /></td>
       <td align="right" valign="middle"> {RestaurantRow.calcStars(restaurant.rating)}</td>
@@ -88,7 +88,7 @@ class FilterableRestaurantTable extends React.Component {
       });
 
       return (
-        <table>
+        <table id="customers">
           <thead>
             <tr>
               <th align="left">Cuisine</th>
