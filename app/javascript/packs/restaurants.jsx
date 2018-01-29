@@ -57,11 +57,22 @@ class RestaurantsContainer extends React.Component {
     return (
       <div>
         <div className="banner">
-          <div className="filters">
+          <h1>WeEat</h1>
+          <div className="search">
             <TextFilter handleOnFilterTextChange = {this.handleOnTextFilterChange.bind(this)} />
+          </div>
+        </div>
+        <div className="filters">
+          <div className="filter">
             <CuisineSelect handleOnChange={this.handleOnChangeCuisine.bind(this)} />
+          </div>
+          <div className="filter">
             <RatingSelect handleOnChange={this.handleOnChangeRating.bind(this)} />
+          </div>
+          <div className="filter">
             <DeliveryTimeFilter handleOnMaxDelTimeChange={this.handleOnMaxDelTimeChange.bind(this)} />
+          </div>
+          <div className="filter">
             <TenBisSelect handleTenBisChange={this.handleOnTenBisChange.bind(this)} />
           </div>
         </div>

@@ -28,7 +28,7 @@ export class TenBisSelect extends React.Component {
           type="checkbox"
           checked={this.props.onlyTenBis}
           onClick={this.props.handleTenBisChange} />
-        {' '}Accepts Ten Bis
+        {' '}Only Ten Bis
       </form>
     );
   }
@@ -66,7 +66,7 @@ export class CuisineSelect extends React.Component {
     if (cuisines && cuisines.length > 0) {
       return (
         <div>
-          <select onChange={this.props.handleOnChange}>
+          <select onChange={this.props.handleOnChange} className="custom-select sources">
             <option key="All" value="All">All Cuisines</option>
             {cuisines.map(cuisine =>
               <option key={cuisine.id} value={cuisine.id}>{cuisine.name}</option>)}
