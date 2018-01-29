@@ -43,6 +43,7 @@ class FilterableRestaurantTable extends React.Component {
     const filterCuisine = this.props.filterCuisine;
     const filterRating = this.props.filterRating;
     const filterTenBis = this.props.filterTenBis;
+    const filterDelTime = this.props.filterDelTime;
     if (filterCuisine !== 'All') {
       restaurantList = restaurantList.filter(function (rest) {
         return parseInt(rest.cuisine_id, 10) === parseInt(filterCuisine, 10);
@@ -59,6 +60,14 @@ class FilterableRestaurantTable extends React.Component {
         return rest.name.toLowerCase().includes(filterText.toLowerCase());
       });
     }
+    if (filterDelTime !== undefined) {
+      if (filterDelTime) {
+        restaurantList = restaurantList.filter(function (rest) {
+          return rest.max_delivery_time < filterDelTime;
+        });
+      }
+    }
+
     restaurantList = restaurantList.filter(function (rest) {
       if (filterTenBis && rest.accepts_ten_bis) {
         return true;
@@ -105,6 +114,7 @@ FilterableRestaurantTable.propTypes = {
   filterCuisine: PropTypes.string,
   filterRating: PropTypes.string,
   filterTenBis: PropTypes.bool,
+  filterDelTime: PropTypes.string,
 
 };
 

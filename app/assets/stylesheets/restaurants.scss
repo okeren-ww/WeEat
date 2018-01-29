@@ -2,7 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body {
-  padding: 5px
+  padding: 0px;
+  margin-top: 5px;
 }
 
 .accepts_ten_bis {
@@ -22,7 +23,7 @@ body {
 }
 
 .page-header {
-  margin-top: -20px;
+  margin-top: 0px;
   width: 100%;
 }
 
@@ -40,14 +41,21 @@ body {
   flex-direction:row;
   min-height: 100%;
 }
-.Filters{
-  #background-image: url('TenBisBig.png');
-  #background-repeat: no-repeat;
-  #background-size: auto;
 
-  height: 90px;
+.banner{
+  position: relative;
+  background-image: url('TenBisBig.png');
+  background-repeat: no-repeat;
+  background-size:100%;
+  height: 170px;
+  margin: 0 !important;
+  padding-bottom: 0px;
+}
+
+.filters{
+  position: absolute;
+  bottom: 5px;
+  left: 30%;
   display:flex;
   flex-direction:row;
-  min-height: 100%;
-  position: relative;
 }

@@ -28,8 +28,7 @@ export class TenBisSelect extends React.Component {
           type="checkbox"
           checked={this.props.onlyTenBis}
           onClick={this.props.handleTenBisChange} />
-        {' '}
-                    Only show Restaurants that accept ten bis
+        {' '}Accepts Ten Bis
       </form>
     );
   }
@@ -106,3 +105,24 @@ TextFilter.propTypes = {
   filterText: PropTypes.string,
   handleOnFilterTextChange: PropTypes.func,
 };
+
+export class DeliveryTimeFilter extends React.Component {
+  render() {
+    return (
+      <div>
+        <input
+          type="number"
+          placeholder="Max delivery time..."
+          value={this.props.maxDeliveryTime}
+          onChange={this.props.handleOnMaxDelTimeChange} />
+      </div>
+    );
+  }
+}
+
+DeliveryTimeFilter.propTypes = {
+  maxDeliveryTime: PropTypes.string,
+  handleOnMaxDelTimeChange: PropTypes.func,
+};
+
+

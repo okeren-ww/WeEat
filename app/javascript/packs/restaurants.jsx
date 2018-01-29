@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import FilterableRestaurantTable from './components/RestaurantsList';
 import Map from './components/Map';
-import { TenBisSelect, RatingSelect, CuisineSelect, TextFilter } from './components/Filters';
+import { TenBisSelect, RatingSelect, CuisineSelect, TextFilter, DeliveryTimeFilter } from './components/Filters';
 
 class RestaurantsContainer extends React.Component {
   constructor() {
@@ -10,9 +10,9 @@ class RestaurantsContainer extends React.Component {
     this.state = {
       restaurants: [],
       filterText: '',
-      onlyTenBis: false,
-      ratingFilter: 'All',
-      cuisineFilter: 'All',
+      filterTenBis: false,
+      filterRating: 'All',
+      filterCuisine: 'All',
     };
   }
 
@@ -31,39 +31,50 @@ class RestaurantsContainer extends React.Component {
 
   handleOnTenBisChange(e) {
     this.setState({
-      onlyTenBis: e.target.checked,
+      filterTenBis: e.target.checked,
     });
   }
 
   handleOnChangeRating(e) {
     this.setState({
-      ratingFilter: e.target.value,
+      filterRating: e.target.value,
     });
   }
 
   handleOnChangeCuisine(e) {
     this.setState({
-      cuisineFilter: e.target.value,
+      filterCuisine: e.target.value,
+    });
+  }
+
+  handleOnMaxDelTimeChange(e) {
+    this.setState({
+      filterDelTime: e.target.value,
     });
   }
 
   render() {
     return (
       <div>
-        <div className="Filters">
-          <TextFilter handleOnFilterTextChange = {this.handleOnTextFilterChange.bind(this)} />
-          <CuisineSelect handleOnChange={this.handleOnChangeCuisine.bind(this)} />
-          <RatingSelect handleOnChange={this.handleOnChangeRating.bind(this)} />
-          <TenBisSelect handleTenBisChange={this.handleOnTenBisChange.bind(this)} />
+        <div className="banner">
+          <div className="filters">
+            <TextFilter handleOnFilterTextChange = {this.handleOnTextFilterChange.bind(this)} />
+            <CuisineSelect handleOnChange={this.handleOnChangeCuisine.bind(this)} />
+            <RatingSelect handleOnChange={this.handleOnChangeRating.bind(this)} />
+            <DeliveryTimeFilter handleOnMaxDelTimeChange={this.handleOnMaxDelTimeChange.bind(this)} />
+            <TenBisSelect handleTenBisChange={this.handleOnTenBisChange.bind(this)} />
+          </div>
         </div>
+
         <div className="RestaurantsContainer">
           <div className="RestaurantsLeft">
             <FilterableRestaurantTable
               restaurants = {this.state.restaurants}
               filterText = {this.state.filterText}
-              filterCuisine = {this.state.cuisineFilter}
-              filterRating = {this.state.ratingFilter}
-              filterTenBis = {this.state.onlyTenBis}
+              filterCuisine = {this.state.filterCuisine}
+              filterRating = {this.state.filterRating}
+              filterTenBis = {this.state.filterTenBis}
+              filterDelTime = {this.state.filterDelTime}
             />
           </div>
           <div className="MapRight">
