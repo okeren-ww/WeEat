@@ -75,11 +75,12 @@ export class CuisineSelect extends React.Component {
       );
     }
 
-    return (<div>
-      <select onChange={this.props.handleOnChange}>
-        <option key="All" value="All">All</option>
-      </select>
-    </div>);
+    return (
+      <div>
+        <select onChange={this.props.handleOnChange}>
+          <option key="All" value="All">All</option>
+        </select>
+      </div>);
   }
 }
 
