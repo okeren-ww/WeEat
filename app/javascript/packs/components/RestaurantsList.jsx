@@ -11,15 +11,11 @@ class RestaurantRow extends React.Component {
     return stars;
   }
 
-  constructor() {
-    super();
-  }
-
   render() {
     const restaurant = this.props.restaurant;
     const imagePath = 'images/' + restaurant.cuisine_icon;
     return (<tr>
-      <td><img className="cuisine_icon" src={imagePath} alt="Smiley face" height="42" width="42" /></td>
+      <td><img className="cuisine_icon" src={imagePath} alt="cuisine" /></td>
       <td align="left" valign="middle">{restaurant.name}</td>
       <td><img className={restaurant.accepts_ten_bis ? 'accepts_ten_bis' : 'not_accepts_ten_bis'} /></td>
       <td align="right" valign="middle"> {RestaurantRow.calcStars(restaurant.rating)}</td>
@@ -33,17 +29,17 @@ RestaurantRow.propTypes = {
 
 
 class FilterableRestaurantTable extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     let restaurantList = this.props.restaurants;
-    const filterText = this.props.filterText;
-    const filterCuisine = this.props.filterCuisine;
-    const filterRating = this.props.filterRating;
-    const filterTenBis = this.props.filterTenBis;
-    const filterDelTime = this.props.filterDelTime;
+    const {
+      filterText = this.props.filterText,
+      filterCuisine = this.props.filterCuisine,
+      filterRating = this.props.filterRating,
+      filterTenBis = this.props.filterTenBis,
+      filterDelTime = this.props.filterDelTime,
+
+    } = this.props;
+
     if (filterCuisine !== 'All') {
       restaurantList = restaurantList.filter(function (rest) {
         return parseInt(rest.cuisine_id, 10) === parseInt(filterCuisine, 10);

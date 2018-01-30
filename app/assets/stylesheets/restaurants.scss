@@ -19,6 +19,7 @@ body {
 
 .cuisine_icon {
   width: 40px;
+  height: 40px;
   padding: 0px;
 }
 
@@ -27,16 +28,16 @@ body {
   width: 100%;
 }
 
-.RestaurantsLeft, .MapRight{
+.restaurants_left, .map_right{
   float: left;
 }
 
-.MapRight{
+.map_right{
   margin-left: 80px;
   min-height: 100%;
 }
 
-.RestaurantsContainer{
+.restaurants_container{
   display:flex;
   flex-direction:row;
   min-height: 100%;
@@ -48,7 +49,7 @@ body {
   background-repeat: no-repeat;
   background-size:100%;
   height: 170px;
-  margin: 0 !important;
+  margin: 0;
   padding-bottom: 0px;
 }
 
@@ -58,4 +59,8 @@ body {
   left: 30%;
   display:flex;
   flex-direction:row;
+}
+
+.id{
+
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Constants from './Constants';
 
 class Map extends React.Component {
   render() {
@@ -7,8 +8,7 @@ class Map extends React.Component {
         width="850"
         height="850"
         frameBorder="0"
-        src="https://www.google.com/maps/embed/v1/place?&q=New%20York&zoom=13&key=AIzaSyBvZdXEk7Oo1fw0Tc9fm0CSQNtfIGTny6I" />
-
+        src={Constants.GMAPS_URL} />
     );
   }
 }

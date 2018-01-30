@@ -3,71 +3,68 @@ import ReactDOM from 'react-dom';
 import FilterableRestaurantTable from './components/RestaurantsList';
 import Map from './components/Map';
 import { TenBisSelect, RatingSelect, CuisineSelect, TextFilter, DeliveryTimeFilter } from './components/Filters';
+import * as Constants from './components/Constants';
 
 class RestaurantsContainer extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      restaurants: [],
-      filterText: '',
-      filterTenBis: false,
-      filterRating: 'All',
-      filterCuisine: 'All',
-    };
-  }
+  state = {
+    restaurants: [],
+    filterText: '',
+    filterTenBis: false,
+    filterRating: 'All',
+    filterCuisine: 'All',
+  };
 
   componentWillMount() {
-    fetch('http://localhost:3000/restaurants.json')
+    fetch(Constants.RESTAURANTS_URL)
       .then(response => response.json())
       .then(response => this.setState({ restaurants: response }));
   }
 
-
-  handleOnTextFilterChange(e) {
+  handleOnTextFilterChange = (e) => {
     this.setState({
       filterText: e.target.value,
     });
-  }
+  };
 
-  handleOnTenBisChange(e) {
+  handleOnTenBisChange = (e) => {
     this.setState({
       filterTenBis: e.target.checked,
     });
-  }
+  };
 
-  handleOnChangeRating(e) {
+  handleOnChangeRating = (e) => {
     this.setState({
       filterRating: e.target.value,
     });
-  }
+  };
 
-  handleOnChangeCuisine(e) {
+  handleOnChangeCuisine = (e) => {
     this.setState({
       filterCuisine: e.target.value,
     });
-  }
+  };
 
-  handleOnMaxDelTimeChange(e) {
+  handleOnMaxDelTimeChange = (e) => {
     this.setState({
       filterDelTime: e.target.value,
     });
-  }
+  };
 
   render() {
     return (
       <div>
         <div className="banner">
           <div className="filters">
-            <TextFilter handleOnFilterTextChange = {this.handleOnTextFilterChange.bind(this)} />
-            <CuisineSelect handleOnChange={this.handleOnChangeCuisine.bind(this)} />
-            <RatingSelect handleOnChange={this.handleOnChangeRating.bind(this)} />
-            <DeliveryTimeFilter handleOnMaxDelTimeChange={this.handleOnMaxDelTimeChange.bind(this)} />
-            <TenBisSelect handleTenBisChange={this.handleOnTenBisChange.bind(this)} />
+            <TextFilter handleOnFilterTextChange = {this.handleOnTextFilterChange} />
+            <CuisineSelect handleOnChange={this.handleOnChangeCuisine} />
+            <RatingSelect handleOnChange={this.handleOnChangeRating} />
+            <DeliveryTimeFilter handleOnMaxDelTimeChange={this.handleOnMaxDelTimeChange} />
+            <TenBisSelect handleTenBisChange={this.handleOnTenBisChange} />
           </div>
         </div>
 
-        <div className="RestaurantsContainer">
-          <div className="RestaurantsLeft">
+        <div className="restaurants_container">
+          <div className="restaurants_left">
             <FilterableRestaurantTable
               restaurants = {this.state.restaurants}
               filterText = {this.state.filterText}
@@ -77,7 +74,7 @@ class RestaurantsContainer extends React.Component {
               filterDelTime = {this.state.filterDelTime}
             />
           </div>
-          <div className="MapRight">
+          <div className="map_right">
             <Map />
           </div>
         </div>
