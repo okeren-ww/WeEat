@@ -40,36 +40,45 @@ class FilterableRestaurantTable extends React.Component {
 
     } = this.props;
 
+    let filtersArray = [];
     if (filterCuisine !== 'All') {
-      restaurantList = restaurantList.filter(function (rest) {
+      filtersArray.push(function (rest) {
         return parseInt(rest.cuisine_id, 10) === parseInt(filterCuisine, 10);
       });
     }
+
     if (filterRating !== 'All') {
-      restaurantList = restaurantList.filter(function (rest) {
+      filtersArray.push(function (rest) {
         let ratingFloor = (Math.floor(rest.rating)).toString();
         return ratingFloor === filterRating;
       });
     }
     if (filterText !== '') {
-      restaurantList = restaurantList.filter(function (rest) {
+      filtersArray.push(function (rest) {
         return rest.name.toLowerCase().includes(filterText.toLowerCase());
       });
     }
     if (filterDelTime !== undefined) {
       if (filterDelTime) {
-        restaurantList = restaurantList.filter(function (rest) {
+        filtersArray.push(function (rest) {
           return rest.max_delivery_time < filterDelTime;
         });
       }
     }
 
-    restaurantList = restaurantList.filter(function (rest) {
+    filtersArray.push(function (rest) {
       if (filterTenBis && rest.accepts_ten_bis) {
         return true;
       }
       return !(filterTenBis && !rest.accepts_ten_bis);
     });
+
+
+    function applyFilter(filter) {
+      restaurantList = restaurantList.filter(filter);
+    }
+
+    filtersArray.map(applyFilter);
 
 
     if (restaurantList && restaurantList.length > 0) {
