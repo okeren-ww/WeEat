@@ -4,6 +4,7 @@ import FilterableRestaurantTable from './components/RestaurantsList';
 import Map from './components/Map';
 import { TenBisSelect, RatingSelect, CuisineSelect, TextFilter, DeliveryTimeFilter } from './components/Filters';
 import * as Constants from './components/Constants';
+import fetchJson from './components/HttpFetch';
 
 class RestaurantsContainer extends React.Component {
   state = {
@@ -15,9 +16,7 @@ class RestaurantsContainer extends React.Component {
   };
 
   componentWillMount() {
-    fetch(Constants.RESTAURANTS_URL)
-      .then(response => response.json())
-      .then(response => this.setState({ restaurants: response }));
+    fetchJson(Constants.RESTAURANTS_URL, response => this.setState({ restaurants: response }));
   }
 
   handleOnTextFilterChange = (e) => {
