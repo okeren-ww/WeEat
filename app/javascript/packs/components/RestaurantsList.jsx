@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 class RestaurantRow extends React.Component {
   static calcStars(rating) {
     let stars = '';
@@ -14,19 +13,21 @@ class RestaurantRow extends React.Component {
   render() {
     const restaurant = this.props.restaurant;
     const imagePath = 'images/' + restaurant.cuisine_icon;
-    return (<tr>
-      <td><img className="cuisine_icon" src={imagePath} alt="cuisine" /></td>
-      <td align="left" valign="middle">{restaurant.name}</td>
-      <td><img className={restaurant.accepts_ten_bis ? 'accepts_ten_bis' : 'not_accepts_ten_bis'} /></td>
-      <td align="right" valign="middle"> {RestaurantRow.calcStars(restaurant.rating)}</td>
-    </tr>);
+
+    return (
+        <tr>
+          <td><img className="cuisine_icon" src={imagePath} alt="cuisine" /></td>
+          <td align="left" valign="middle">{restaurant.name}</td>
+          <td><img className={restaurant.accepts_ten_bis ? 'accepts_ten_bis' : 'not_accepts_ten_bis'} /></td>
+          <td align="right" valign="middle"> {RestaurantRow.calcStars(restaurant.rating)}</td>
+        </tr>
+    );
   }
 }
 
 RestaurantRow.propTypes = {
-  restaurant: PropTypes.object,
+  restaurant: PropTypes.object.isRequired,
 };
-
 
 class FilterableRestaurantTable extends React.Component {
   render() {
@@ -37,7 +38,6 @@ class FilterableRestaurantTable extends React.Component {
       filterRating = this.props.filterRating,
       filterTenBis = this.props.filterTenBis,
       filterDelTime = this.props.filterDelTime,
-
     } = this.props;
 
     let filtersArray = [];
@@ -73,13 +73,10 @@ class FilterableRestaurantTable extends React.Component {
       return !(filterTenBis && !rest.accepts_ten_bis);
     });
 
-
     function applyFilter(filter) {
       restaurantList = restaurantList.filter(filter);
     }
-
     filtersArray.map(applyFilter);
-
 
     if (restaurantList && restaurantList.length > 0) {
       const rows = [];
@@ -114,13 +111,12 @@ class FilterableRestaurantTable extends React.Component {
 }
 
 FilterableRestaurantTable.propTypes = {
-  restaurants: PropTypes.array,
+  restaurants: PropTypes.array.isRequired,
   filterText: PropTypes.string,
   filterCuisine: PropTypes.string,
   filterRating: PropTypes.string,
   filterTenBis: PropTypes.bool,
   filterDelTime: PropTypes.string,
-
 };
 
 export default FilterableRestaurantTable;

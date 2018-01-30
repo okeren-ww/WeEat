@@ -29,12 +29,10 @@ export function TenBisSelect({ onlyTenBis, handleTenBisChange }) {
       <input
         type="checkbox"
         checked={onlyTenBis}
-        onClick={handleTenBisChange} />
-                Accepts Ten Bis
+        onClick={handleTenBisChange} /> Accepts Ten Bis
     </form>
   );
 }
-
 TenBisSelect.propTypes = {
   onlyTenBis: PropTypes.bool,
   handleTenBisChange: PropTypes.func,
@@ -60,9 +58,10 @@ export class CuisineSelect extends React.Component {
         <div>
           <select onChange={this.props.handleOnChange}>
             <option key="All" value="All">All Cuisines</option>
-              if(cuisines && cuisines.length > 0){
+              if(cuisines && cuisines.length > 0) {
               cuisines.map(cuisine =>
-                <option key={cuisine.id} value={cuisine.id}>{cuisine.name}</option>)
+                <option key={cuisine.id} value={cuisine.id}>{cuisine.name}</option>
+              )
             }
           </select>
         </div>
@@ -107,5 +106,3 @@ DeliveryTimeFilter.propTypes = {
   maxDeliveryTime: PropTypes.string,
   handleOnMaxDelTimeChange: PropTypes.func,
 };
-
-

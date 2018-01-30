@@ -77,7 +77,6 @@ class RestaurantsContainer extends React.Component {
             <Map />
           </div>
         </div>
-
       </div>
     );
   }
