@@ -13,15 +13,17 @@ class RestaurantRow extends React.Component {
   render() {
     const restaurant = this.props.restaurant;
     const imagePath = 'images/' + restaurant.cuisine_icon;
-
-    return (
-        <tr>
-          <td><img className="cuisine_icon" src={imagePath} alt="cuisine" /></td>
-      <td align="left" valign="middle">{restaurant.name}</td>
-      <td><img className={restaurant.accepts_ten_bis ? 'accepts_ten_bis' : 'not_accepts_ten_bis'} /></td>
-      <td align="right" valign="middle"> {RestaurantRow.calcStars(restaurant.rating)}</td>
-        </tr>
-    );
+    return (<div className="RestaurantCell">
+      <div className="RestaurantIcon">
+          <img className="cuisine_icon" src={imagePath} alt={restaurant.cuisine_icon} height="42" width="42" />
+          <img className="cuisine_icon" src={imagePath} alt={restaurant.cuisine_icon} height="42" width="42" />
+      </div>
+      {restaurant.name}
+      <img className={restaurant.accepts_ten_bis ? 'accepts_ten_bis' : 'not_accepts_ten_bis'} />
+              Max Delivery Time: {restaurant.max_delivery_time}
+      {restaurant.address}
+      {RestaurantRow.calcStars(restaurant.rating)}
+    </div>);
   }
 }
 
@@ -73,10 +75,6 @@ class FilterableRestaurantTable extends React.Component {
       return !(filterTenBis && !rest.accepts_ten_bis);
     });
 
-    function applyFilter(filter) {
-      restaurantList = restaurantList.filter(filter);
-    }
-    filtersArray.map(applyFilter);
 
     if (restaurantList && restaurantList.length > 0) {
       const rows = [];
@@ -89,19 +87,7 @@ class FilterableRestaurantTable extends React.Component {
         );
       });
 
-      return (
-        <table>
-          <thead>
-            <tr>
-              <th align="left">Cuisine</th>
-              <th align="left">Name</th>
-              <th align="left">Ten Bis</th>
-              <th align="right">Rating</th>
-            </tr>
-          </thead>
-          <tbody>{rows}</tbody>
-        </table>
-      );
+      return (rows);
     }
     // error handling
     return (
