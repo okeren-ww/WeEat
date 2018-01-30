@@ -7,11 +7,13 @@
 h1 {
   font-family: 'Pacifico', cursive;
   font-weight: normal;
-  font-size: 70px;
+  font-size: 80px;
   color: #fbf8f0;
   position: absolute;
-  left: 15px;
   top: 30px;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 body {
@@ -60,7 +62,7 @@ body {
   position: relative;
   background-image: url('Banner_New.jpeg');
   background-repeat: no-repeat;
-  background-size:cover;
+  background-size:105%;
   height: 270px;
   margin: 0 !important;
   padding-bottom: 0px;
@@ -121,4 +123,23 @@ select {
   border-radius: 4px;
   box-sizing: border-box;
   margin: 5px 0;
+}
+
+
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #655d5a;
+  color: white;
 }

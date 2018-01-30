@@ -17,9 +17,9 @@ class RestaurantRow extends React.Component {
     return (
         <tr>
           <td><img className="cuisine_icon" src={imagePath} alt="cuisine" /></td>
-          <td align="left" valign="middle">{restaurant.name}</td>
-          <td><img className={restaurant.accepts_ten_bis ? 'accepts_ten_bis' : 'not_accepts_ten_bis'} /></td>
-          <td align="right" valign="middle"> {RestaurantRow.calcStars(restaurant.rating)}</td>
+      <td align="left" valign="middle">{restaurant.name}</td>
+      <td><img className={restaurant.accepts_ten_bis ? 'accepts_ten_bis' : 'not_accepts_ten_bis'} /></td>
+      <td align="right" valign="middle"> {RestaurantRow.calcStars(restaurant.rating)}</td>
         </tr>
     );
   }
