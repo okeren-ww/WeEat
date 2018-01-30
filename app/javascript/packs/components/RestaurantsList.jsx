@@ -15,8 +15,7 @@ class RestaurantRow extends React.Component {
     const imagePath = 'images/' + restaurant.cuisine_icon;
     return (<div className="RestaurantCell">
       <div className="RestaurantIcon">
-          <img className="cuisine_icon" src={imagePath} alt={restaurant.cuisine_icon} height="42" width="42" />
-          <img className="cuisine_icon" src={imagePath} alt={restaurant.cuisine_icon} height="42" width="42" />
+          <img className="cuisine_icon" src={imagePath} alt={restaurant.cuisine_icon} />
       </div>
       {restaurant.name}
       <img className={restaurant.accepts_ten_bis ? 'accepts_ten_bis' : 'not_accepts_ten_bis'} />
@@ -74,6 +73,11 @@ class FilterableRestaurantTable extends React.Component {
       }
       return !(filterTenBis && !rest.accepts_ten_bis);
     });
+
+    function applyFilter(filter) {
+        restaurantList = restaurantList.filter(filter);
+    }
+    filtersArray.map(applyFilter);
 
 
     if (restaurantList && restaurantList.length > 0) {
