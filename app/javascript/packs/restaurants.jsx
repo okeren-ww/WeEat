@@ -8,12 +8,12 @@ import fetchJson from './components/HttpFetch';
 
 class RestaurantsContainer extends React.Component {
   state = {
-    restaurants: [],
-    filterText: '',
-    filterTenBis: false,
-    filterRating: 'All',
-    filterCuisine: 'All',
-  };
+      restaurants: [],
+      filterText: '',
+      filterTenBis: false,
+      filterRating: 'All',
+      filterCuisine: 'All',
+    };
 
   componentWillMount() {
     fetchJson(Constants.RESTAURANTS_URL, response => this.setState({ restaurants: response }));

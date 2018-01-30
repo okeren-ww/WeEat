@@ -105,7 +105,7 @@ class FilterableRestaurantTable extends React.Component {
     }
     // error handling
     return (
-      <h1>No restaurants found</h1>
+      <h2>No restaurants found</h2>
     );
   }
 }

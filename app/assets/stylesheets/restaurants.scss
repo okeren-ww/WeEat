@@ -1,6 +1,19 @@
 // Place all the styles related to the restaurants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-weight: normal;
+  font-size: 70px;
+  color: #fbf8f0;
+  position: absolute;
+  left: 15px;
+  top: 30px;
+}
+
 body {
   padding: 0px;
   margin-top: 5px;

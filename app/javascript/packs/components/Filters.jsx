@@ -24,14 +24,14 @@ RatingSelect.propTypes = {
 };
 
 export function TenBisSelect({ onlyTenBis, handleTenBisChange }) {
-  return (
-    <form>
-      <input
-        type="checkbox"
+    return (
+      <form>
+        <input
+          type="checkbox"
         checked={onlyTenBis}
         onClick={handleTenBisChange} /> Accepts Ten Bis
-    </form>
-  );
+      </form>
+    );
 }
 TenBisSelect.propTypes = {
   onlyTenBis: PropTypes.bool,
@@ -43,16 +43,16 @@ export class CuisineSelect extends React.Component {
       cuisines: [],
     };
 
-    componentWillMount() {
+  componentWillMount() {
         fetchJson(Constants.CUISINES_URL, response => this.setState({ cuisines: response }));
-    }
+  }
 
-    render() {
+  render() {
       let cuisines = [...this.state.cuisines].sort(function (a, b) {
-        let first = a.name;
-        let second = b.name;
-        return first > second ? 1 : (first < second ? -1 : 0);
-      });
+      let first = a.name;
+      let second = b.name;
+      return first > second ? 1 : (first < second ? -1 : 0);
+    });
 
       return (
         <div>
@@ -74,15 +74,15 @@ CuisineSelect.propTypes = {
 };
 
 export function TextFilter({ filterText, handleOnFilterTextChange }) {
-  return (
-    <div>
-      <input
-        type="text"
-        placeholder="Search..."
+    return (
+      <div>
+        <input
+          type="text"
+          placeholder="Search..."
         value={filterText}
         onChange={handleOnFilterTextChange} />
-    </div>
-  );
+      </div>
+    );
 }
 
 TextFilter.propTypes = {
@@ -91,15 +91,15 @@ TextFilter.propTypes = {
 };
 
 export function DeliveryTimeFilter({ maxDeliveryTime, handleOnMaxDelTimeChange }) {
-  return (
-    <div>
-      <input
-        type="number"
-        placeholder="Max delivery time..."
+    return (
+      <div>
+        <input
+          type="number"
+          placeholder="Max delivery time..."
         value={maxDeliveryTime}
         onChange={handleOnMaxDelTimeChange} />
-    </div>
-  );
+      </div>
+    );
 }
 
 DeliveryTimeFilter.propTypes = {
