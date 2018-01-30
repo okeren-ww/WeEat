@@ -40,6 +40,7 @@ gem 'rubocop', require: false
 gem 'faraday', '~> 0.13.1'
 gem 'faraday_middleware', '~> 0.12.2'
 gem 'hashie', '~> 3.5', '>= 3.5.7'
+gem 'react_on_rails', '10.0.2'
 gem 'sidekiq', '~> 5.0', '>= 5.0.5'
 
 group :development, :test do
@@ -68,3 +69,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i(mingw mswin x64_mingw jruby)
+
+gem 'mini_racer', platforms: :ruby

@@ -4,9 +4,7 @@ class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: %i(show edit update destroy)
 
   def index
-    restaurants = Restaurant.all
-
-    render json: restaurants.to_json
+    @restaurants = Restaurant.all
   end
 
   def new
