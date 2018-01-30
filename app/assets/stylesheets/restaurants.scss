@@ -58,18 +58,67 @@ body {
 
 .banner{
   position: relative;
-  background-image: url('TenBisBig.png');
+  background-image: url('Banner_Big.jpeg');
   background-repeat: no-repeat;
   background-size:100%;
-  height: 170px;
-  margin: 0;
+  height: 270px;
+  margin: 0 !important;
   padding-bottom: 0px;
 }
 
+.search {
+  width: 50%;
+  margin: 0 auto;
+}
+
 .filters{
-  position: absolute;
   bottom: 5px;
   left: 30%;
   display:flex;
   flex-direction:row;
+}
+
+.filter{
+  width: 25%;
+  float: left;
+  margin: 5px;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  border-radius: 4px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  outline: none;
+}
+
+input[type=number] {
+  width: 100%;
+  padding: 10px 20px;
+  margin: 5px 0;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  border-radius: 4px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  outline: none;
+}
+
+input[type=text]:focus, input[type=number]:focus {
+  border: 3px solid #555;
+}
+
+
+select {
+  width: 100%;
+  height: 40px;
+  padding: 6px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 5px 0;
 }
