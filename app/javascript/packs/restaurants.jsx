@@ -58,22 +58,24 @@ class RestaurantsContainer extends React.Component {
             <TextFilter handleOnFilterTextChange = {this.handleOnTextFilterChange} />
           </div>
         </div>
-          <div className="filters">
-            <div className="filter">
+        <div className="filters">
+          <div className="filter">
+              <label className="filter_labels"> Select Cuisine </label>
               <CuisineSelect handleOnChange={this.handleOnChangeCuisine} />
-            </div>
-            <div className="filter">
-              <RatingSelect handleOnChange={this.handleOnChangeRating} />
-            </div>
-            <div className="filter">
-              <DeliveryTimeFilter handleOnMaxDelTimeChange={this.handleOnMaxDelTimeChange} />
-            </div>
-            <div className="filter">
-              <TenBisSelect handleTenBisChange={this.handleOnTenBisChange} />
-            </div>
           </div>
-
-        <div className="restaurants_container">
+          <div className="filter">
+              <label className="filter_labels"> Select Minimum Rating </label>
+              <RatingSelect handleOnChange={this.handleOnChangeRating} />
+          </div>
+          <div className="filter">
+              <label className="filter_labels"> Select Max Delivery Time </label>
+              <DeliveryTimeFilter handleOnMaxDelTimeChange={this.handleOnMaxDelTimeChange} />
+          </div>
+          <div className="filter_ten_bis">
+              <TenBisSelect handleTenBisChange={this.handleOnTenBisChange} />
+          </div>
+      </div>
+      <div className="restaurants_container">
           <div className="restaurants_list">
             <FilterableRestaurantTable
               restaurants = {this.state.restaurants}
@@ -84,7 +86,7 @@ class RestaurantsContainer extends React.Component {
               filterDelTime = {this.state.filterDelTime}
             />
           </div>
-            <Map />
+          <Map />
         </div>
       </div>
     );

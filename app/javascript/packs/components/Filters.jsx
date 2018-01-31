@@ -12,11 +12,9 @@ export class RatingSelect extends React.Component {
     }
 
     return (
-        <div>
             <select onChange={this.props.handleOnChange}>
             {options}
             </select>
-        </div>
     );
   }
 }
@@ -57,7 +55,6 @@ export class CuisineSelect extends React.Component {
     });
 
       return (
-        <div>
           <select onChange={this.props.handleOnChange}>
             <option key="All" value="All">All Cuisines</option>
               if(cuisines && cuisines.length > 0) {
@@ -66,7 +63,6 @@ export class CuisineSelect extends React.Component {
               )
             }
           </select>
-        </div>
       );
     }
 }
