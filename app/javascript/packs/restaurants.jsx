@@ -60,9 +60,6 @@ class RestaurantsContainer extends React.Component {
         </div>
           <div className="filters">
             <div className="filter">
-              <TextFilter handleOnFilterTextChange = {this.handleOnTextFilterChange} />
-            </div>
-            <div className="filter">
               <CuisineSelect handleOnChange={this.handleOnChangeCuisine} />
             </div>
             <div className="filter">
