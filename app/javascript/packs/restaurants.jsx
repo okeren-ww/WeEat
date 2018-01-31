@@ -51,7 +51,7 @@ class RestaurantsContainer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="div_body">
         <div className="banner">
           <h1>WeEat</h1>
           <div>
@@ -97,6 +97,6 @@ class RestaurantsContainer extends React.Component {
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
       <RestaurantsContainer />,
-    document.body.appendChild(document.createElement('div')),
+      document.body.appendChild(document.createElement('div')),
   );
 });

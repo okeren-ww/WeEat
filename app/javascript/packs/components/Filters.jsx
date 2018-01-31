@@ -91,8 +91,11 @@ export function DeliveryTimeFilter({ maxDeliveryTime, handleOnMaxDelTimeChange }
     return (
       <div>
         <input
+            className="max_delivery_time"
           type="number"
           placeholder="Max delivery time..."
+          min={0}
+          step={5}
         value={maxDeliveryTime}
         onChange={handleOnMaxDelTimeChange} />
       </div>

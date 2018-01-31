@@ -2,105 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@import url('https://fonts.googleapis.com/css?family=Pacifico');
-@import url('https://fonts.googleapis.com/css?family=Arimo');
-@import url('https://fonts.googleapis.com/css?family=Arimo|Comfortaa');
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Arimo|Comfortaa|Pacifico');
 
-
-h1 {
-  font-family: 'Pacifico', cursive;
-  font-weight: normal;
-  font-size: 80px;
-  color: #fbf8f0;
-  position: absolute;
-  top: 30px;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-body {
-  margin-top: 0;
-  background-color: #264653;
-}
-
-.main_body{
-  padding: 0;
-}
-
-.restaurants_container{
-  display:flex;
-  flex-direction:row;
-  min-height: 100%;
-  justify-content: space-between;
-  margin-top: 5px;
-}
-
-.restaurants_list{
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-}
-
-.restaurant_cell {
-  margin-bottom: 5px;
-  border: 2px solid #E76F51;
-  display: flex;
-  justify-content: space-between;
-  background-color: #FBFCFF;
-  align-items: stretch;
-  border-radius: 3px;
-}
-
-.cuisine_icon_div{
-  display: flex;
-  align-items: center;
-}
-
-.cuisine_icon {
-  width: 50px;
-  height: 50px;
-  margin: 20px;
-}
-
-.restaurant_main_info {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  width: 180px;
-  font-family: 'Arimo', sans-serif;
-  margin: 3px 3px;
-}
-
-.restaurant_secondary_info {
-  width: 70px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-
-.ten_bis_icon {
-
-}
-
-.accepts_ten_bis {
-  content: image_url('tenbis.png');
-  width: 20px;
-}
-
-.not_accepts_ten_bis {
-  @extend .accepts_ten_bis;
-  filter: grayscale(100%) opacity(20%);
-}
-
-.page-header {
-  margin-top: 0px;
-}
-
-.map_right{
-  height: 800px;
-  width: 65%;
-}
+$filter-bkgrnd: #E76F51;
+$cell-selected-bkgrnd: #E76F51;
+$cell-bkgrnd: #F1F8F3;
+$body-bkgrnd: #264653;
+$search-border-color: #ccc;
+$search-selected-border-color: #264653;
+$header-text-color: #fbf8f0;
+$cuisine-icon-size: 50px;
+$tenbis-icon-size: 20px;
 
 .banner{
   position: relative;
@@ -113,6 +25,99 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+h1 {
+  top: 30px;
+  left: 50%;
+  position: absolute;
+  font-family: 'Pacifico', cursive;
+  font-weight: normal;
+  font-size: 80px;
+  color: $header-text-color;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+body {
+  margin-top: 0;
+  background-color: $body-bkgrnd;
+}
+
+.restaurants_container{
+  min-height: 100%;
+  margin-top: 5px;
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
+}
+
+.restaurants_list{
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.restaurant_cell {
+  margin-bottom: 5px;
+  border: 2px solid $cell-selected-bkgrnd;
+  border-radius: 3px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  background-color: $cell-bkgrnd;
+
+  &:hover {
+    background-color: $cell-selected-bkgrnd;
+  }
+}
+
+.cuisine_icon_div{
+  display: flex;
+  align-items: center;
+}
+
+.cuisine_icon {
+  width: $cuisine-icon-size;
+  height: $cuisine-icon-size;
+  margin: 20px;
+}
+
+.restaurant_main_info {
+  width: 180px;
+  margin: 3px 3px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-family: 'Arimo', sans-serif;
+}
+
+.restaurant_secondary_info {
+  width: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.accepts_ten_bis, .not_accepts_ten_bis {
+  content: image_url('tenbis.png');
+  width: $tenbis-icon-size;
+  height: $tenbis-icon-size;
+}
+
+.not_accepts_ten_bis {
+  filter: grayscale(100%) opacity(20%);
+}
+
+.page-header {
+  margin-top: 0px;
+}
+
+.map_right{
+  height: 800px;
+  width: 65%;
+}
+
+
 
 .search_box{
   margin-top: 120px;
@@ -127,6 +132,10 @@ body {
   font-family: 'Pacifico', cursive;
   font-weight: normal;
   font-size: 14px;
+
+  &:focus {
+    border: 3px solid $search-selected-border-color;
+  }
 }
 
 .filters{
@@ -136,7 +145,7 @@ body {
   display: flex;
   flex-direction:row;
   justify-content: space-between;
-  background-color: #E76F51;
+  background-color: $filter-bkgrnd;
 }
 
 .filter, .filter_ten_bis{
@@ -161,22 +170,6 @@ body {
   margin-bottom: 5px;
 }
 
-input[type=number] {
-  width: 100%;
-  padding: 10px 20px;
-  margin: 5px 0;
-  box-sizing: border-box;
-  border: 3px solid #ccc;
-  border-radius: 4px;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-  outline: none;
-}
-
-input[type=text]:focus, input[type=number]:focus {
-  border: 3px solid #264653;
-}
-
 select {
   width: 40%;
   height: 40px;
@@ -187,5 +180,28 @@ select {
   align-self: center;
 }
 
+.max_delivery_time {
+  width: 100%;
+  height: 40px;
+  padding: 6px 20px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  align-self: center;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  outline: none;
+
+  &:focus {
+    border: 3px solid #264653;
+  }
+}
+
+.restaurant_name{
+  margin-top: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Abril Fatface', cursive;
+}
 
 
