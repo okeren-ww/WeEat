@@ -5,6 +5,10 @@
 @import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Arimo|Comfortaa|Pacifico');
 @import 'variables';
 
+.body_div{
+  padding: 0;
+}
+
 .banner{
   background: image_url($banner-image) no-repeat;
   background-size:105%;
@@ -42,12 +46,15 @@ h1 {
 
 body {
   margin-top: 0;
+  margin: 0;
   background-color: $body-bkgrnd;
 }
 
 .restaurants_container{
   min-height: 100%;
   margin-top: 5px;
+  margin-left: 33px;
+  margin-right: 33px;
   display:flex;
   flex-direction:row;
   justify-content: space-between;

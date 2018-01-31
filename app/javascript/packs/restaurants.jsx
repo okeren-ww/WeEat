@@ -95,8 +95,11 @@ class RestaurantsContainer extends React.Component {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
+
+    const newDiv = document.createElement("div");
+    newDiv.className = "body_div";
+    document.body.appendChild(newDiv);
+    ReactDOM.render(
       <RestaurantsContainer />,
-      document.body.appendChild(document.createElement('div')),
-  );
+        newDiv)
 });
