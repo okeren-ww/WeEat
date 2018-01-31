@@ -3,32 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Arimo|Comfortaa|Pacifico');
-
-$banner-image: 'Banner.jpeg';
-$tenbis-icon: 'tenbis.png';
-$filter-bkgrnd: #E76F51;
-$cell-selected-bkgrnd: #E76F51;
-$cell-bkgrnd: #F1F8F3;
-$body-bkgrnd: #264653;
-$search-border-color: #ccc;
-$search-selected-border-color: #264653;
-$header-text-color: #fbf8f0;
-$cuisine-icon-size: 50px;
-$tenbis-icon-size: 20px;
-$banner-height: 240px;
-$header-font-size: 80px;
-$search-box-width: 450px;
-$search-box-animation-transition: 0.2s;
-$search-box-font-size: 14px;
-$filters-bar-height: 80px;
-$filter-width: 40%;
-$restaurant-name-font-size: 20px;
-$restaurant-info-width: 180px;
-$restaurant-secondary-info-width: 70px;
-$map-height: 800px;
-$map-width: 65%;
-$filter-width: 80%;
-$filter-height: 40px;
+@import 'variables';
 
 .banner{
   background: image_url($banner-image) no-repeat;
@@ -47,7 +22,7 @@ h1 {
   color: $header-text-color;
 }
 
-.search-box{
+.search_box{
   width: $search-box-width;
   padding: 6px 20px;
   box-sizing: border-box;
@@ -175,11 +150,11 @@ body {
   font-size: 16px;
 }
 
-.filter-select {
+.filter_select {
   width: $filter-width;
   height: $filter-height;
   padding: 6px 20px;
-  border: 1px solid #ccc;
+  border: 1px solid $search-border-color;
   border-radius: 4px;
   box-sizing: border-box;
   align-self: center;
@@ -192,13 +167,13 @@ body {
   align-self: center;
   border-radius: 4px;
   box-sizing: border-box;
-  border: 3px solid #ccc;
+  border: 3px solid $search-border-color;
   outline: none;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
+  -webkit-transition: $search-box-animation-transition;
+  transition: $search-box-animation-transition;
 
   &:focus {
-    border: 3px solid #264653;
+    border: 3px solid $search-selected-border-color;
   }
 }
 
