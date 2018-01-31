@@ -4,6 +4,8 @@
 
 @import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Arimo|Comfortaa|Pacifico');
 
+$banner-image: 'Banner.jpeg';
+$tenbis-icon: 'tenbis.png';
 $filter-bkgrnd: #E76F51;
 $cell-selected-bkgrnd: #E76F51;
 $cell-bkgrnd: #F1F8F3;
@@ -13,29 +15,54 @@ $search-selected-border-color: #264653;
 $header-text-color: #fbf8f0;
 $cuisine-icon-size: 50px;
 $tenbis-icon-size: 20px;
+$banner-height: 240px;
+$header-font-size: 80px;
+$search-box-width: 450px;
+$search-box-animation-transition: 0.2s;
+$search-box-font-size: 14px;
+$filters-bar-height: 80px;
+$filter-width: 40%;
+$restaurant-name-font-size: 20px;
+$restaurant-info-width: 180px;
+$restaurant-secondary-info-width: 70px;
+$map-height: 800px;
+$map-width: 65%;
+$filter-width: 80%;
+$filter-height: 40px;
 
 .banner{
-  position: relative;
-  background: url('Banner_New.jpeg') no-repeat;
+  background: image_url($banner-image) no-repeat;
   background-size:105%;
-  height: 240px;
-  margin: 0;
-  padding-bottom: 0;
+  height: $banner-height;
   display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
-  justify-content: center;
 }
 
 h1 {
-  top: 30px;
-  left: 50%;
-  position: absolute;
   font-family: 'Pacifico', cursive;
   font-weight: normal;
-  font-size: 80px;
+  font-size: $header-font-size;
   color: $header-text-color;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+}
+
+.search-box{
+  width: $search-box-width;
+  padding: 6px 20px;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  border-radius: 4px;
+  -webkit-transition: $search-box-animation-transition;
+  transition: $search-box-animation-transition;
+  outline: none;
+  font-family: 'Pacifico', cursive;
+  font-weight: normal;
+  font-size: $search-box-font-size;
+
+  &:focus {
+    border: 3px solid $search-selected-border-color;
+  }
 }
 
 body {
@@ -83,7 +110,7 @@ body {
 }
 
 .restaurant_main_info {
-  width: 180px;
+  width: $restaurant-info-width;
   margin: 3px 3px;
   display: flex;
   flex-direction: column;
@@ -92,14 +119,14 @@ body {
 }
 
 .restaurant_secondary_info {
-  width: 70px;
+  width: $restaurant-secondary-info-width;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
 
 .accepts_ten_bis, .not_accepts_ten_bis {
-  content: image_url('tenbis.png');
+  content: image_url($tenbis-icon);
   width: $tenbis-icon-size;
   height: $tenbis-icon-size;
 }
@@ -109,39 +136,17 @@ body {
 }
 
 .page-header {
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 .map_right{
-  height: 800px;
-  width: 65%;
-}
-
-
-
-.search_box{
-  margin-top: 120px;
-  width: 450px;
-  padding: 6px 20px;
-  box-sizing: border-box;
-  border: 3px solid #ccc;
-  border-radius: 4px;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-  outline: none;
-  font-family: 'Pacifico', cursive;
-  font-weight: normal;
-  font-size: 14px;
-
-  &:focus {
-    border: 3px solid $search-selected-border-color;
-  }
+  height: $map-height;
+  width: $map-width;
 }
 
 .filters{
-  height: 80px;
+  height: $filters-bar-height;
   bottom: 5px;
-  left: 30%;
   display: flex;
   flex-direction:row;
   justify-content: space-between;
@@ -149,13 +154,13 @@ body {
 }
 
 .filter, .filter_ten_bis{
-  width: 80%;
+  width: $filter-width;
+  margin-right: 15px;
   display: flex;
   flex-direction: column;
-  font-family: 'Comfortaa', cursive;
   align-items: center;
   justify-content: flex-start;
-  margin-right: 15px;
+  font-family: 'Comfortaa', cursive;
 }
 
 .filter_ten_bis{
@@ -163,16 +168,16 @@ body {
 }
 
 .filter_labels{
+  margin-top: 5px;
+  margin-bottom: 5px;
   font-family: 'Comfortaa', cursive;
   font-weight: bold;
   font-size: 16px;
-  margin-top: 5px;
-  margin-bottom: 5px;
 }
 
-select {
-  width: 40%;
-  height: 40px;
+.filter-select {
+  width: $filter-width;
+  height: $filter-height;
   padding: 6px 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -182,15 +187,15 @@ select {
 
 .max_delivery_time {
   width: 100%;
-  height: 40px;
+  height: $filter-height;
   padding: 6px 20px;
+  align-self: center;
   border-radius: 4px;
   box-sizing: border-box;
-  align-self: center;
   border: 3px solid #ccc;
+  outline: none;
   -webkit-transition: 0.2s;
   transition: 0.2s;
-  outline: none;
 
   &:focus {
     border: 3px solid #264653;
@@ -199,7 +204,7 @@ select {
 
 .restaurant_name{
   margin-top: 5px;
-  font-size: 20px;
+  font-size: $restaurant-name-font-size;
   font-weight: bold;
   font-family: 'Abril Fatface', cursive;
 }

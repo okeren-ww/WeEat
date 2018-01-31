@@ -12,7 +12,7 @@ export class RatingSelect extends React.Component {
     }
 
     return (
-            <select onChange={this.props.handleOnChange}>
+            <select onChange={this.props.handleOnChange} className="filter-select">
             {options}
             </select>
     );
@@ -55,7 +55,7 @@ export class CuisineSelect extends React.Component {
     });
 
       return (
-          <select onChange={this.props.handleOnChange}>
+          <select onChange={this.props.handleOnChange} className="filter-select">
             <option key="All" value="All">All Cuisines</option>
               if(cuisines && cuisines.length > 0) {
               cuisines.map(cuisine =>
@@ -78,7 +78,7 @@ export function TextFilter({ filterText, handleOnFilterTextChange }) {
             placeholder="Search..."
             value={filterText}
             onChange={handleOnFilterTextChange}
-            className="search_box" />
+            className="search-box" />
     );
 }
 
