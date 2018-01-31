@@ -72,6 +72,7 @@ class RestaurantsContainer extends React.Component {
               <DeliveryTimeFilter handleOnMaxDelTimeChange={this.handleOnMaxDelTimeChange} />
           </div>
           <div className="filter_ten_bis">
+              <label className="filter_labels"> Only Ten Bis </label>
               <TenBisSelect handleTenBisChange={this.handleOnTenBisChange} />
           </div>
       </div>
@@ -95,7 +96,7 @@ class RestaurantsContainer extends React.Component {
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <RestaurantsContainer />,
+      <RestaurantsContainer />,
     document.body.appendChild(document.createElement('div')),
   );
 });

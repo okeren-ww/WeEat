@@ -29,7 +29,7 @@ export function TenBisSelect({ onlyTenBis, handleTenBisChange }) {
         <input
           type="checkbox"
         checked={onlyTenBis}
-        onClick={handleTenBisChange} /> Accepts Ten Bis
+        onClick={handleTenBisChange} />
       </form>
     );
 }
