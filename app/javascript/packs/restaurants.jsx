@@ -54,7 +54,7 @@ class RestaurantsContainer extends React.Component {
       <div>
         <div className="banner">
           <h1>WeEat</h1>
-          <div className="search">
+          <div>
             <TextFilter handleOnFilterTextChange = {this.handleOnTextFilterChange} />
           </div>
         </div>
@@ -74,7 +74,7 @@ class RestaurantsContainer extends React.Component {
           </div>
 
         <div className="restaurants_container">
-          <div className="restaurants_left">
+          <div className="restaurants_list">
             <FilterableRestaurantTable
               restaurants = {this.state.restaurants}
               filterText = {this.state.filterText}
@@ -84,9 +84,7 @@ class RestaurantsContainer extends React.Component {
               filterDelTime = {this.state.filterDelTime}
             />
           </div>
-          <div className="map_right">
             <Map />
-          </div>
         </div>
       </div>
     );

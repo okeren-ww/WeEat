@@ -4,9 +4,8 @@ import * as Constants from './Constants';
 class Map extends React.Component {
   render() {
     return (
-      <iframe
-        width="850"
-        height="850"
+      <iframe className="map_right"
+
         frameBorder="0"
         src={Constants.GMAPS_URL} />
     );

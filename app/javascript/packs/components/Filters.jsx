@@ -11,11 +11,13 @@ export class RatingSelect extends React.Component {
       options.push(<option key={i} value={i}>{'★'.repeat(i)}</option>);
     }
 
-    return (<div>
-      <select onChange={this.props.handleOnChange}>
-        {options}
-      </select>
-    </div>);
+    return (
+        <div>
+            <select onChange={this.props.handleOnChange}>
+            {options}
+            </select>
+        </div>
+    );
   }
 }
 
@@ -75,13 +77,12 @@ CuisineSelect.propTypes = {
 
 export function TextFilter({ filterText, handleOnFilterTextChange }) {
     return (
-      <div>
         <input
-          type="text"
-          placeholder="Search..."
-        value={filterText}
-        onChange={handleOnFilterTextChange} />
-      </div>
+            type="text"
+            placeholder="Search..."
+            value={filterText}
+            onChange={handleOnFilterTextChange}
+            className="search_box" />
     );
 }
 

@@ -13,16 +13,26 @@ class RestaurantRow extends React.Component {
   render() {
     const restaurant = this.props.restaurant;
     const imagePath = 'images/' + restaurant.cuisine_icon;
-    return (<div className="RestaurantCell">
-      <div className="RestaurantIcon">
-          <img className="cuisine_icon" src={imagePath} alt={restaurant.cuisine_icon} />
-      </div>
-      {restaurant.name}
-      <img className={restaurant.accepts_ten_bis ? 'accepts_ten_bis' : 'not_accepts_ten_bis'} />
-              Max Delivery Time: {restaurant.max_delivery_time}
-      {restaurant.address}
-      {RestaurantRow.calcStars(restaurant.rating)}
-    </div>);
+    return (
+        <div className="restaurant_cell">
+          <div className="cuisine_icon_div">
+              <img className="cuisine_icon" src={imagePath} alt={restaurant.cuisine_icon} />
+          </div>
+          <div className="restaurant_main_info">
+              {restaurant.name}<br/><br/>
+              Delivery Time: {restaurant.max_delivery_time} Minutes<br/>
+              {restaurant.address}<br/>
+          </div>
+          <div className="restaurant_secondary_info">
+            <div className="ten_bis_icon">
+                <img className={restaurant.accepts_ten_bis ? 'accepts_ten_bis' : 'not_accepts_ten_bis'} />
+            </div>
+            <div className="restaurant_rating">
+                {RestaurantRow.calcStars(restaurant.rating)}
+            </div>
+          </div>
+        </div>
+    );
   }
 }
 
