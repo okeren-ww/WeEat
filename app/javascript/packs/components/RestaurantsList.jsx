@@ -23,7 +23,7 @@ class FilterableRestaurantTable extends React.Component {
     if (filterRating !== 'All') {
       filtersArray.push(function (rest) {
         let ratingFloor = (Math.floor(rest.rating)).toString();
-        return ratingFloor === filterRating;
+        return ratingFloor >= filterRating;
       });
     }
     if (filterText !== '') {

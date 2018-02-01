@@ -2,8 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Arimo|Comfortaa|Pacifico');
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Arimo|Comfortaa|Pacifico|Josefin+Sans');
 @import 'variables';
+
+body {
+  margin: 0;
+  background-color: $body-bkgrnd;
+}
 
 .body_div{
   padding: 0;
@@ -44,11 +49,6 @@ h1 {
   }
 }
 
-body {
-  margin-top: 0;
-  margin: 0;
-  background-color: $body-bkgrnd;
-}
 
 .restaurants_container{
   min-height: 100%;
@@ -97,7 +97,8 @@ body {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  font-family: 'Arimo', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
+
 }
 
 .restaurant_secondary_info {
@@ -126,7 +127,7 @@ body {
   width: $map-width;
 }
 
-.filters{
+.filters_bar{
   height: $filters-bar-height;
   bottom: 5px;
   display: flex;
@@ -142,7 +143,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  font-family: 'Comfortaa', cursive;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 .filter_ten_bis{
@@ -152,9 +153,10 @@ body {
 .filter_labels{
   margin-top: 5px;
   margin-bottom: 5px;
-  font-family: 'Comfortaa', cursive;
+  font-family: 'Josefin Sans', sans-serif;
   font-weight: bold;
   font-size: 16px;
+  color: $header-text-color;
 }
 
 .filter_select {
