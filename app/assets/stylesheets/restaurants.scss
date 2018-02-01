@@ -74,6 +74,7 @@ h1 {
   align-items: stretch;
   justify-content: space-between;
   background-color: $cell-bkgrnd;
+  cursor: pointer;
 
   &:hover {
     background-color: $cell-selected-bkgrnd;
@@ -142,7 +143,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -193,4 +194,114 @@ h1 {
   font-family: 'Abril Fatface', cursive;
 }
 
+/* Custom dropdown */
+.custom_dropdown {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
 
+.custom_dropdown select {
+  background-color: $cell-bkgrnd;
+  color: black;
+  font-size: inherit;
+  padding: .5em 2.5em .5em .5em;
+  border: 0;
+  margin: 0;
+  border-radius: 3px;
+  text-indent: 0.01px;
+  text-overflow: '';
+  -webkit-appearance: button; /* hide default arrow in chrome OSX */
+}
+
+.custom_dropdown::before,
+.custom_dropdown::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.custom_dropdown::after { /*  Custom dropdown arrow */
+  content: "\25BC";
+  height: 1em;
+  font-size: .625em;
+  line-height: 1;
+  right: 1.2em;
+  top: 50%;
+  margin-top: -.5em;
+}
+
+.custom_dropdown::before { /*  Custom dropdown arrow cover */
+  width: 2em;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 0 3px 3px 0;
+}
+
+.custom_dropdown::before {
+  background-color: rgba(0,0,0,.15);
+}
+
+//Custom checkbox
+.checkbox_container {
+  display: block;
+  position: relative;
+  padding-left: 0;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &:hover input ~ .checkmark{
+    background-color: #ccc;
+  }
+}
+
+/* Hide the browser's default checkbox */
+.checkbox_container input {
+  position: relative;
+  opacity: 0;
+  cursor: pointer;
+
+  /* When the checkbox is hecked, add a blue background */
+  &:checked ~.checkmark {
+    background-color: $checkbox-selected-color;
+  }
+
+  &:checked ~.checkmark:after {
+    display: block;
+  }
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+
+  &:after{
+    content: "";
+    position: absolute;
+    display: none;
+  }
+}
+
+/* Style the checkmark/indicator */
+.checkbox_container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

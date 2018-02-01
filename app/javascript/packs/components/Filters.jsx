@@ -12,9 +12,11 @@ export class RatingSelect extends React.Component {
     }
 
     return (
-            <select onChange={this.props.handleOnChange} className="filter_select">
+        <div className="custom_dropdown">
+            <select onChange={this.props.handleOnChange}>
             {options}
             </select>
+        </div>
     );
   }
 }
@@ -25,12 +27,14 @@ RatingSelect.propTypes = {
 
 export function TenBisSelect({ onlyTenBis, handleTenBisChange }) {
     return (
-      <form>
+      <label className="checkbox_container">
         <input
           type="checkbox"
         checked={onlyTenBis}
         onClick={handleTenBisChange} />
-      </form>
+          <span className="checkmark"/>
+      </label>
+
     );
 }
 TenBisSelect.propTypes = {
@@ -55,7 +59,8 @@ export class CuisineSelect extends React.Component {
     });
 
       return (
-          <select onChange={this.props.handleOnChange} className="filter_select">
+          <div className="custom_dropdown">
+          <select onChange={this.props.handleOnChange}>
             <option key="All" value="All">All Cuisines</option>
               if(cuisines && cuisines.length > 0) {
               cuisines.map(cuisine =>
@@ -63,6 +68,7 @@ export class CuisineSelect extends React.Component {
               )
             }
           </select>
+          </div>
       );
     }
 }
