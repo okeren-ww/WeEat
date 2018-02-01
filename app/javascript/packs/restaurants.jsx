@@ -58,7 +58,7 @@ class RestaurantsContainer extends React.Component {
 
   render() {
     return (
-      <div className="div_body">
+      <div>
         <div className="banner">
           <h1>WeEat</h1>
           <div>

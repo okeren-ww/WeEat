@@ -201,6 +201,8 @@ h1 {
   align-items: center;
 }
 
+//======= Custom Elements =========
+
 /* Custom dropdown */
 .custom_dropdown {
   position: relative;
@@ -229,7 +231,7 @@ h1 {
 }
 
 .custom_dropdown::after { /*  Custom dropdown arrow */
-  content: "\25BC";
+  content: $down-arrow;
   height: 1em;
   font-size: .625em;
   line-height: 1;
@@ -264,7 +266,7 @@ h1 {
   user-select: none;
 
   &:hover input ~ .checkmark{
-    background-color: #ccc;
+    background-color: $light-grey;
   }
 }
 
@@ -289,9 +291,9 @@ h1 {
   position: absolute;
   top: 0;
   left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
+  height: $checkbox-size;
+  width: $checkbox-size;
+  background-color: $faux-white;
 
   &:after{
     content: "";
