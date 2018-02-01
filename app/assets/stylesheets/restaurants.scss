@@ -194,6 +194,13 @@ h1 {
   font-family: 'Abril Fatface', cursive;
 }
 
+.deliver_time_slider{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Custom dropdown */
 .custom_dropdown {
   position: relative;

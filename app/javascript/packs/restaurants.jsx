@@ -13,10 +13,16 @@ class RestaurantsContainer extends React.Component {
       filterTenBis: false,
       filterRating: 'All',
       filterCuisine: 'All',
+      filterDelTime: 15,
     };
 
   componentWillMount() {
     fetchJson(Constants.RESTAURANTS_URL, response => this.setState({ restaurants: response }));
+  }
+
+  componentDidMount(){
+      document.getElementById('delivery_time_label').innerHTML = this.state.filterDelTime + ' Minutes';
+
   }
 
   handleOnTextFilterChange = (e) => {
@@ -47,6 +53,7 @@ class RestaurantsContainer extends React.Component {
     this.setState({
       filterDelTime: e.target.value,
     });
+    document.getElementById('delivery_time_label').innerHTML = e.target.value + ' Minutes';
   };
 
   render() {
@@ -69,7 +76,7 @@ class RestaurantsContainer extends React.Component {
           </div>
           <div className="filter">
               <label className="filter_labels"> Select Max Delivery Time </label>
-              <DeliveryTimeFilter handleOnMaxDelTimeChange={this.handleOnMaxDelTimeChange} />
+              <DeliveryTimeFilter maxDeliveryTime={this.state.filterDelTime} handleOnMaxDelTimeChange={this.handleOnMaxDelTimeChange} />
           </div>
           <div className="filter_ten_bis">
               <label className="filter_labels"> Only Ten Bis </label>

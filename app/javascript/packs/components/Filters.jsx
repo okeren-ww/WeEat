@@ -95,15 +95,15 @@ TextFilter.propTypes = {
 
 export function DeliveryTimeFilter({ maxDeliveryTime, handleOnMaxDelTimeChange }) {
     return (
-      <div>
+      <div className="deliver_time_slider">
         <input
-            className="max_delivery_time"
-          type="number"
-          placeholder="Max delivery time..."
-          min={0}
-          step={5}
-        value={maxDeliveryTime}
-        onChange={handleOnMaxDelTimeChange} />
+            type="range"
+            min={0}
+            step={5}
+            max={120}
+            value={maxDeliveryTime}
+            onChange={handleOnMaxDelTimeChange} />
+          <label className="filter_labels" id="delivery_time_label"/>
       </div>
     );
 }
