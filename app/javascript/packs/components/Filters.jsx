@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as Constants from './Constants';
-import fetchJson from "./HttpFetch";
+import fetchJson from './HttpFetch';
 
 export class RatingSelect extends React.Component {
   render() {
@@ -109,6 +109,6 @@ export function DeliveryTimeFilter({ maxDeliveryTime, handleOnMaxDelTimeChange }
 }
 
 DeliveryTimeFilter.propTypes = {
-  maxDeliveryTime: PropTypes.string,
+  maxDeliveryTime: PropTypes.number,
   handleOnMaxDelTimeChange: PropTypes.func,
 };

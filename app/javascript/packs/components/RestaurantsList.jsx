@@ -77,7 +77,7 @@ FilterableRestaurantTable.propTypes = {
   filterCuisine: PropTypes.string,
   filterRating: PropTypes.string,
   filterTenBis: PropTypes.bool,
-  filterDelTime: PropTypes.string,
+  filterDelTime: PropTypes.number,
 };
 
 export default FilterableRestaurantTable;

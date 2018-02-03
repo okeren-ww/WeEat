@@ -54,6 +54,7 @@ class RestaurantsContainer extends React.Component {
       filterDelTime: e.target.value,
     });
     document.getElementById('delivery_time_label').innerHTML = e.target.value + ' Minutes';
+    //TODO: ref
   };
 
   render() {
