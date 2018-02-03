@@ -58,6 +58,7 @@ class FilterableRestaurantTable extends React.Component {
           <RestaurantCell
             restaurant = {restaurant}
             key = {restaurant.id}
+            handleSelectedRestaurantChange = {this.props.handleSelectedRestaurantChange}
           />
         );
       });

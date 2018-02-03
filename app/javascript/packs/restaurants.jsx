@@ -4,7 +4,7 @@ import FilterableRestaurantTable from './components/RestaurantsList';
 import Map from './components/Map';
 import { TenBisSelect, RatingSelect, CuisineSelect, TextFilter, DeliveryTimeFilter } from './components/Filters';
 import * as Constants from './components/Constants';
-import fetchJson from './components/HttpFetch';
+import {fetchJSON, fetchGeoCache} from "./components/HttpFetch";
 
 class RestaurantsContainer extends React.Component {
   state = {
@@ -14,10 +14,14 @@ class RestaurantsContainer extends React.Component {
       filterRating: 'All',
       filterCuisine: 'All',
       filterDelTime: 15,
+      marker: {
+          lng: null,
+          lat: null,
+      }
     };
 
   componentWillMount() {
-    fetchJson(Constants.RESTAURANTS_URL, response => this.setState({ restaurants: response }));
+    fetchJSON(Constants.RESTAURANTS_URL, response => this.setState({ restaurants: response }));
   }
 
   componentDidMount(){
@@ -57,6 +61,20 @@ class RestaurantsContainer extends React.Component {
     //TODO: ref
   };
 
+  setRestaurantMarker(response){
+    const location = response.results[0].geometry.location;
+    this.setState({
+        marker: {
+            lng: location.lng,
+            lat: location.lat,
+        }
+    });
+  }
+
+  handleSelectedRestaurantChange = (e) => {
+      fetchGeoCache(e.address).then(response => this.setRestaurantMarker(response));
+  };
+
   render() {
     return (
       <div>
@@ -93,9 +111,10 @@ class RestaurantsContainer extends React.Component {
               filterRating = {this.state.filterRating}
               filterTenBis = {this.state.filterTenBis}
               filterDelTime = {this.state.filterDelTime}
+              handleSelectedRestaurantChange = {this.handleSelectedRestaurantChange}
             />
           </div>
-          <Map />
+          <Map selectedRestaurant = {this.state.marker}/>
         </div>
       </div>
     );

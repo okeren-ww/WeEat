@@ -10,11 +10,15 @@ export class RestaurantCell extends React.Component {
         return stars;
     }
 
+    handleClick = () => {
+        this.props.handleSelectedRestaurantChange(this.props.restaurant);
+    };
+
     render() {
         const restaurant = this.props.restaurant;
         const imagePath = 'images/' + restaurant.cuisine_icon;
         return (
-            <div className="restaurant_cell">
+            <div className="restaurant_cell" onClick={this.handleClick}>
                 <div className="cuisine_icon_div">
                     <img className="cuisine_icon" src={imagePath} alt={restaurant.cuisine_icon} />
                 </div>

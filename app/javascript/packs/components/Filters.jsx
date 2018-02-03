@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as Constants from './Constants';
-import fetchJson from './HttpFetch';
+import {fetchJSON, fetchGeoCache} from "./HttpFetch";
 
 export class RatingSelect extends React.Component {
   render() {
@@ -48,7 +48,7 @@ export class CuisineSelect extends React.Component {
     };
 
   componentWillMount() {
-        fetchJson(Constants.CUISINES_URL, response => this.setState({ cuisines: response }));
+        fetchJSON(Constants.CUISINES_URL, response => this.setState({ cuisines: response }));
   }
 
   render() {

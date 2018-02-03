@@ -24,29 +24,29 @@ class Map extends React.Component {
     }
   };
 
-  handleRestaurantChanged(response){
-    console.log(response);
-    const location = response.results[0].geometry.location;
-    console.log(location.lat);
-    this.setState({
-      marker: {
-        lng: location.lng,
-          lat: location.lat,
-      }
-    });
+  setRestaurantMarker(response){
+      const location = response.results[0].geometry.location;
+      this.setState({
+          marker: {
+              lng: location.lng,
+              lat: location.lat,
+          }
+      });
   }
 
-
   componentWillMount(){
-    fetchGeoCache('1335 6th Ave, New York, NY 10019').then( response => this.handleRestaurantChanged(response) )
   }
 
   render() {
+      if(this.props.selectedRestaurant != null){
+          console.log("hi");
+          //fetchGeoCache(this.props.selectedRestaurant.address).then(response => this.setRestaurantMarker(response));
+      }
     return (
         <div className="map_right">
             <MapWithAMarker
                 googleMapURL={Constants.GMAPS_URL}
-                markerLocation = {this.state.marker}
+                markerLocation = {this.props.selectedRestaurant}
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `400px` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
