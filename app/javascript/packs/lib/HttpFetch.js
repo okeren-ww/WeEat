@@ -5,7 +5,6 @@ export function fetchJSON(url){
         .then(response => response.json()).catch((err) => {
             console.log("OOPS! Something went wrong :( Error:" + err);
         });
-    //TODO: return fetch directly + catch + move to lib folder
 }
 
 export function fetchGeoCache(address){

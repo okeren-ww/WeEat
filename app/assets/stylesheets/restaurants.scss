@@ -133,8 +133,6 @@ h1 {
   height: 100%;
 }
 
-
-
 .filters_bar{
   height: $filters-bar-height;
   bottom: 5px;
@@ -158,13 +156,17 @@ h1 {
   width: 20%;
 }
 
-.filter_labels{
+.filter_labels, .deliver_time_label{
   margin-top: 5px;
   margin-bottom: 5px;
   font-family: 'Josefin Sans', sans-serif;
   font-weight: bold;
   font-size: 16px;
   color: $header-text-color;
+}
+
+.deliver_time_label {
+  font-size: 14px;
 }
 
 .filter_select {

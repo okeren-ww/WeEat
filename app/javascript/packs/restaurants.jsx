@@ -63,8 +63,6 @@ class RestaurantsContainer extends React.Component {
     this.setState({
       filterDelTime: parseInt(e.target.value),
     });
-    document.getElementById('delivery_time_label').innerHTML = e.target.value + ' Minutes';
-    //TODO: ref
   };
 
   setRestaurantMarker(response){

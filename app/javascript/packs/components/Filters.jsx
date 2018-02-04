@@ -109,7 +109,7 @@ export function DeliveryTimeFilter({ maxDeliveryTime, handleOnMaxDelTimeChange }
             max={120}
             value={maxDeliveryTime}
             onChange={handleOnMaxDelTimeChange} />
-          <label className="filter_labels" id="delivery_time_label"/>
+          <label className="deliver_time_label" id="delivery_time_label">{maxDeliveryTime + ' Minutes'}</label>
       </div>
     );
 }
