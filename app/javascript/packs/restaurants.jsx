@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import FilterableRestaurantTable from './components/RestaurantsList';
 import Map from './components/Map';
-import { TenBisSelect, RatingSelect, CuisineSelect, TextFilter, DeliveryTimeFilter } from './components/Filters';
+import {TextFilter, FilterBar} from './components/Filters';
 import * as Constants from './components/Constants';
-import {fetchJSON, fetchGeoCache} from "./components/HttpFetch";
+import {fetchJSON, fetchGeoCache} from "./lib/HttpFetch";
 
 class RestaurantsContainer extends React.Component {
   state = {
@@ -13,7 +13,7 @@ class RestaurantsContainer extends React.Component {
       filterTenBis: false,
       filterRating: 'All',
       filterCuisine: 'All',
-      filterDelTime: 15,
+      filterDelTime: Constants.DEFAULT_DELIVERY_TIME,
       marker: {
           lng: null,
           lat: null,
@@ -55,7 +55,7 @@ class RestaurantsContainer extends React.Component {
 
   handleOnMaxDelTimeChange = (e) => {
     this.setState({
-      filterDelTime: e.target.value,
+      filterDelTime: parseInt(e.target.value),
     });
     document.getElementById('delivery_time_label').innerHTML = e.target.value + ' Minutes';
     //TODO: ref
@@ -84,24 +84,12 @@ class RestaurantsContainer extends React.Component {
             <TextFilter handleOnFilterTextChange = {this.handleOnTextFilterChange} />
           </div>
         </div>
-        <div className="filters_bar">
-          <div className="filter">
-              <label className="filter_labels"> Select Cuisine </label>
-              <CuisineSelect handleOnChange={this.handleOnChangeCuisine} />
-          </div>
-          <div className="filter">
-              <label className="filter_labels"> Select Minimum Rating </label>
-              <RatingSelect handleOnChange={this.handleOnChangeRating} />
-          </div>
-          <div className="filter">
-              <label className="filter_labels"> Select Max Delivery Time </label>
-              <DeliveryTimeFilter maxDeliveryTime={this.state.filterDelTime} handleOnMaxDelTimeChange={this.handleOnMaxDelTimeChange} />
-          </div>
-          <div className="filter_ten_bis">
-              <label className="filter_labels"> Only Ten Bis </label>
-              <TenBisSelect handleTenBisChange={this.handleOnTenBisChange} />
-          </div>
-      </div>
+        <FilterBar handleOnChangeCuisine={this.handleOnChangeCuisine}
+                   handleOnChangeRating={this.handleOnChangeRating}
+                   handleOnMaxDelTimeChange = {this.handleOnMaxDelTimeChange}
+                   handleOnTenBisChange={this.handleOnTenBisChange}
+                   filterDelTime={this.state.filterDelTime} />
+
       <div className="restaurants_container">
           <div className="restaurants_list">
             <FilterableRestaurantTable
@@ -122,7 +110,6 @@ class RestaurantsContainer extends React.Component {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-
     const newDiv = document.createElement("div");
     newDiv.className = "body_div";
     document.body.appendChild(newDiv);

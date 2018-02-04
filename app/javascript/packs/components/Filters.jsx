@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as Constants from './Constants';
-import {fetchJSON, fetchGeoCache} from "./HttpFetch";
+import {fetchJSON, fetchGeoCache} from "../lib/HttpFetch";
 
 export class RatingSelect extends React.Component {
   render() {
@@ -111,4 +111,37 @@ export function DeliveryTimeFilter({ maxDeliveryTime, handleOnMaxDelTimeChange }
 DeliveryTimeFilter.propTypes = {
   maxDeliveryTime: PropTypes.number,
   handleOnMaxDelTimeChange: PropTypes.func,
+};
+
+export function FilterBar({handleOnChangeCuisine, handleOnChangeRating, handleOnMaxDelTimeChange, handleOnTenBisChange,
+                          filterDelTime}){
+    return (
+        <div className="filters_bar">
+            <div className="filter">
+                <label className="filter_labels"> Select Cuisine </label>
+                <CuisineSelect handleOnChange={handleOnChangeCuisine} />
+            </div>
+            <div className="filter">
+                <label className="filter_labels"> Select Minimum Rating </label>
+                <RatingSelect handleOnChange={handleOnChangeRating} />
+            </div>
+            <div className="filter">
+                <label className="filter_labels"> Select Max Delivery Time </label>
+                <DeliveryTimeFilter maxDeliveryTime={filterDelTime}
+                                    handleOnMaxDelTimeChange={handleOnMaxDelTimeChange} />
+            </div>
+            <div className="filter_ten_bis">
+                <label className="filter_labels"> Only Ten Bis </label>
+                <TenBisSelect handleTenBisChange={handleOnTenBisChange} />
+            </div>
+        </div>
+    );
+}
+
+FilterBar.propTypes = {
+    handleOnChangeCuisine: PropTypes.func,
+    handleOnChangeRating: PropTypes.func,
+    handleOnMaxDelTimeChange: PropTypes.func,
+    handleOnTenBisChange: PropTypes.func,
+    filterDelTime: PropTypes.number
 };

@@ -1,4 +1,4 @@
-import * as Constants from './Constants'
+import * as Constants from '../components/Constants'
 
 export function fetchJSON(url, func){
     fetch(url)

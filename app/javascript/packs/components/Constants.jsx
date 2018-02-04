@@ -11,3 +11,4 @@ export const GMAPS_GEOCODE_API_KEY = '&key=AIzaSyCfRqlxOlUbqTFVK41mkcD60JcLOGVv4
 export const NEW_YORK_LAT = 40.734;
 export const NEW_YORK_LON = -74;
 export const DEFAULT_MAP_ZOOM = 13;
+export const DEFAULT_DELIVERY_TIME = 15;
