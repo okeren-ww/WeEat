@@ -20,8 +20,14 @@ class RestaurantsContainer extends React.Component {
       }
     };
 
+  setRestaurantsFromJson = (response) => {
+      this.setState({
+          restaurants: response,
+      })
+  };
+
   componentWillMount() {
-    fetchJSON(Constants.RESTAURANTS_URL, response => this.setState({ restaurants: response }));
+    fetchJSON(Constants.RESTAURANTS_URL).then(response => this.setRestaurantsFromJson(response));
   }
 
   componentDidMount(){
