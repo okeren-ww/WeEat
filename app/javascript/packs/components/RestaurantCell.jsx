@@ -44,16 +44,14 @@ export class RestaurantCell extends React.Component {
     }
 }
 
-export class EmptyRestaurantCell extends React.Component {
-    render(){
-        return (
-        <div className="restaurant_cell">
-            <div className="restaurant_name">
-                No Restaurants Found
-            </div>
+export function EmptyRestaurantCell(){
+    return (
+    <div className="restaurant_cell">
+        <div className="restaurant_name">
+            No Restaurants Found
         </div>
-        );
-    }
+    </div>
+    );
 }
 
 RestaurantCell.propTypes = {

@@ -2,7 +2,6 @@ import React from 'react';
 import * as Constants from './Constants';
 import {withScriptjs, withGoogleMap, GoogleMap, Marker,} from "react-google-maps";
 
-
 const MapWithAMarker = withScriptjs(withGoogleMap(props =>
     <GoogleMap
         defaultZoom={Constants.DEFAULT_MAP_ZOOM}
@@ -15,20 +14,18 @@ const MapWithAMarker = withScriptjs(withGoogleMap(props =>
     </GoogleMap>
 ));
 
-class Map extends React.Component {
-  render() {
+export function Map ({selectedRestaurant}) {
     return (
         <div className="map_right">
             <MapWithAMarker
                 googleMapURL={Constants.GMAPS_URL}
-                markerLocation = {this.props.selectedRestaurant}
+                markerLocation = {selectedRestaurant}
                 loadingElement={<div className="map_loading_element"/>}
                 containerElement={<div className="map_right"/>}
                 mapElement={<div className="map_right"/>}
             />
         </div>
     );
-  }
 }
 
 export default Map;
