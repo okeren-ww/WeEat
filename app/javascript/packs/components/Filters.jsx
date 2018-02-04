@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as Constants from './Constants';
-import {fetchJSON, fetchGeoCache} from "../lib/HttpFetch";
+import {fetchJSON} from "../lib/HttpFetch";
 
 export class RatingSelect extends React.Component {
   render() {

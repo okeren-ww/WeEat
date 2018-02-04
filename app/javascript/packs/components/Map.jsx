@@ -6,7 +6,7 @@ import {withScriptjs, withGoogleMap, GoogleMap, Marker,} from "react-google-maps
 const MapWithAMarker = withScriptjs(withGoogleMap(props =>
     <GoogleMap
         defaultZoom={Constants.DEFAULT_MAP_ZOOM}
-        center={props.markerLocation.lat == null ?
+        center={props.markerLocation == null ?
             {lat: Constants.NEW_YORK_LAT, lng: Constants.NEW_YORK_LON} : props.markerLocation}
         >
         <Marker
@@ -16,13 +16,6 @@ const MapWithAMarker = withScriptjs(withGoogleMap(props =>
 ));
 
 class Map extends React.Component {
-  state = {
-    marker: {
-        lng: 0,
-        lat: 0,
-    }
-  };
-
   render() {
     return (
         <div className="map_right">

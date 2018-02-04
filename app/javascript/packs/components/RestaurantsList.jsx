@@ -62,7 +62,6 @@ class FilterableRestaurantTable extends React.Component {
           />
         );
       });
-
       return (rows);
     }
     // error handling

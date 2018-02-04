@@ -14,10 +14,7 @@ class RestaurantsContainer extends React.Component {
       filterRating: 'All',
       filterCuisine: 'All',
       filterDelTime: Constants.DEFAULT_DELIVERY_TIME,
-      marker: {
-          lng: null,
-          lat: null,
-      }
+      marker: null,
     };
 
   setRestaurantsFromJson = (response) => {
