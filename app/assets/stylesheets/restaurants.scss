@@ -126,7 +126,14 @@ h1 {
 .map_right{
   height: $map-height;
   width: $map-width;
+  margin-left: 15px;
 }
+
+.map_loading_element{
+  height: 100%;
+}
+
+
 
 .filters_bar{
   height: $filters-bar-height;

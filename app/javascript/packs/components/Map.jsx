@@ -1,20 +1,19 @@
 import React from 'react';
-import {fetchGeoCache, fetchJSON} from "./HttpFetch";
 import * as Constants from './Constants';
 import {withScriptjs, withGoogleMap, GoogleMap, Marker,} from "react-google-maps";
 
 
 const MapWithAMarker = withScriptjs(withGoogleMap(props =>
     <GoogleMap
-        defaultZoom={8}
-        defaultCenter={{ lat: Constants.NEW_YORK_LAT, lng: Constants.NEW_YORK_LON }}>
+        defaultZoom={Constants.DEFAULT_MAP_ZOOM}
+        center={props.markerLocation.lat == null ?
+            {lat: Constants.NEW_YORK_LAT, lng: Constants.NEW_YORK_LON} : props.markerLocation}
+        >
         <Marker
-            position={{lat: props.markerLocation.lat, lng:props.markerLocation.lng}}
+            position={props.markerLocation}
         />
     </GoogleMap>
 ));
-
-
 
 class Map extends React.Component {
   state = {
@@ -24,32 +23,15 @@ class Map extends React.Component {
     }
   };
 
-  setRestaurantMarker(response){
-      const location = response.results[0].geometry.location;
-      this.setState({
-          marker: {
-              lng: location.lng,
-              lat: location.lat,
-          }
-      });
-  }
-
-  componentWillMount(){
-  }
-
   render() {
-      if(this.props.selectedRestaurant != null){
-          console.log("hi");
-          //fetchGeoCache(this.props.selectedRestaurant.address).then(response => this.setRestaurantMarker(response));
-      }
     return (
         <div className="map_right">
             <MapWithAMarker
                 googleMapURL={Constants.GMAPS_URL}
                 markerLocation = {this.props.selectedRestaurant}
-                loadingElement={<div style={{ height: `100%` }} />}
-                containerElement={<div style={{ height: `400px` }} />}
-                mapElement={<div style={{ height: `100%` }} />}
+                loadingElement={<div className="map_loading_element"/>}
+                containerElement={<div className="map_right"/>}
+                mapElement={<div className="map_right"/>}
             />
         </div>
     );
