@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FilterableRestaurantTable from './components/RestaurantsList';
+import FilterableRestaurantList from './components/RestaurantsList';
 import Map from './components/Map';
-import { TenBisSelect, RatingSelect, CuisineSelect, TextFilter, DeliveryTimeFilter } from './components/Filters';
+import { TextFilter, FilterBar } from './components/Filters';
 import * as Constants from './components/Constants';
-import fetchJson from './components/HttpFetch';
+import { fetchJSON, fetchGeoCache } from './lib/HttpFetch';
 
 class RestaurantsContainer extends React.Component {
   state = {
@@ -13,10 +13,28 @@ class RestaurantsContainer extends React.Component {
     filterTenBis: false,
     filterRating: 'All',
     filterCuisine: 'All',
+    filterDelTime: Constants.DEFAULT_DELIVERY_TIME,
+    marker: null,
   };
 
   componentWillMount() {
-    fetchJson(Constants.RESTAURANTS_URL, response => this.setState({ restaurants: response }));
+    fetchJSON(Constants.RESTAURANTS_URL).then(response => this.setRestaurantsFromJson(response));
+  }
+
+  setRestaurantsFromJson = (response) => {
+    this.setState({
+      restaurants: response,
+    });
+  };
+
+  setRestaurantMarker(response) {
+    const location = response.results[0].geometry.location;
+    this.setState({
+      marker: {
+        lng: location.lng,
+        lat: location.lat,
+      },
+    });
   }
 
   handleOnTextFilterChange = (e) => {
@@ -45,37 +63,43 @@ class RestaurantsContainer extends React.Component {
 
   handleOnMaxDelTimeChange = (e) => {
     this.setState({
-      filterDelTime: e.target.value,
+      filterDelTime: parseInt(e.target.value, 10),
     });
+  };
+
+
+  handleSelectedRestaurantChange = (e) => {
+    fetchGeoCache(e.address).then(response => this.setRestaurantMarker(response));
   };
 
   render() {
     return (
       <div>
         <div className="banner">
-          <div className="filters">
+          <h1>WeEat</h1>
+          <div>
             <TextFilter handleOnFilterTextChange = {this.handleOnTextFilterChange} />
-            <CuisineSelect handleOnChange={this.handleOnChangeCuisine} />
-            <RatingSelect handleOnChange={this.handleOnChangeRating} />
-            <DeliveryTimeFilter handleOnMaxDelTimeChange={this.handleOnMaxDelTimeChange} />
-            <TenBisSelect handleTenBisChange={this.handleOnTenBisChange} />
           </div>
         </div>
+        <FilterBar handleOnChangeCuisine={this.handleOnChangeCuisine}
+          handleOnChangeRating={this.handleOnChangeRating}
+          handleOnMaxDelTimeChange={this.handleOnMaxDelTimeChange}
+          handleOnTenBisChange={this.handleOnTenBisChange}
+          filterDelTime={this.state.filterDelTime} />
 
         <div className="restaurants_container">
-          <div className="restaurants_left">
-            <FilterableRestaurantTable
-              restaurants = {this.state.restaurants}
-              filterText = {this.state.filterText}
-              filterCuisine = {this.state.filterCuisine}
-              filterRating = {this.state.filterRating}
-              filterTenBis = {this.state.filterTenBis}
-              filterDelTime = {this.state.filterDelTime}
+          <div className="restaurants_list">
+            <FilterableRestaurantList
+              restaurants={this.state.restaurants}
+              filterText={this.state.filterText}
+              filterCuisine={this.state.filterCuisine}
+              filterRating={this.state.filterRating}
+              filterTenBis={this.state.filterTenBis}
+              filterDelTime={this.state.filterDelTime}
+              handleSelectedRestaurantChange={this.handleSelectedRestaurantChange}
             />
           </div>
-          <div className="map_right">
-            <Map />
-          </div>
+          <Map selectedRestaurant = {this.state.marker} />
         </div>
       </div>
     );
@@ -83,8 +107,10 @@ class RestaurantsContainer extends React.Component {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  const newDiv = document.createElement('div');
+  newDiv.className = 'body_div';
+  document.body.appendChild(newDiv);
   ReactDOM.render(
     <RestaurantsContainer />,
-    document.body.appendChild(document.createElement('div')),
-  );
+    newDiv);
 });

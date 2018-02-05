@@ -1,62 +1,325 @@
 // Place all the styles related to the restaurants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Arimo|Comfortaa|Pacifico|Josefin+Sans');
+@import 'variables';
+
 body {
-  padding: 0px;
-  margin-top: 5px;
+  margin: 0;
+  background-color: $body-bkgrnd;
 }
 
-.accepts_ten_bis {
-  content: image_url('tenbis.png');
-  padding: 0px;
-  width: 20px;
-}
-
-.not_accepts_ten_bis {
-  @extend .accepts_ten_bis;
-  filter: grayscale(100%) opacity(20%);
-}
-
-.cuisine_icon {
-  width: 40px;
-  height: 40px;
-  padding: 0px;
-}
-
-.page-header {
-  margin-top: 0px;
-  width: 100%;
-}
-
-.restaurants_left, .map_right{
-  float: left;
-}
-
-.map_right{
-  margin-left: 80px;
-  min-height: 100%;
-}
-
-.restaurants_container{
-  display:flex;
-  flex-direction:row;
-  min-height: 100%;
+.body_div{
+  padding: 0;
 }
 
 .banner{
-  position: relative;
-  background-image: url('TenBisBig.png');
-  background-repeat: no-repeat;
-  background-size:100%;
-  height: 170px;
-  margin: 0;
-  padding-bottom: 0px;
+  background: image_url($banner-image) no-repeat;
+  background-size:105%;
+  height: $banner-height;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-.filters{
-  position: absolute;
-  bottom: 5px;
-  left: 30%;
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-weight: normal;
+  font-size: $header-font-size;
+  color: $header-text-color;
+}
+
+.search_box{
+  width: $search-box-width;
+  padding: 6px 20px;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  border-radius: 4px;
+  -webkit-transition: $search-box-animation-transition;
+  transition: $search-box-animation-transition;
+  outline: none;
+  font-family: 'Pacifico', cursive;
+  font-weight: normal;
+  font-size: $search-box-font-size;
+
+  &:focus {
+    border: 3px solid $search-selected-border-color;
+  }
+}
+
+
+.restaurants_container{
+  min-height: 100%;
+  margin-top: 5px;
+  margin-left: 33px;
+  margin-right: 33px;
   display:flex;
   flex-direction:row;
+  justify-content: space-between;
+}
+
+.restaurants_list{
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.restaurant_cell {
+  margin-bottom: 5px;
+  border: 2px solid $cell-selected-bkgrnd;
+  border-radius: 3px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  background-color: $cell-bkgrnd;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $cell-selected-bkgrnd;
+  }
+}
+
+.cuisine_icon_div{
+  display: flex;
+  align-items: center;
+}
+
+.cuisine_icon {
+  width: $cuisine-icon-size;
+  height: $cuisine-icon-size;
+  margin: 20px;
+}
+
+.restaurant_main_info {
+  width: $restaurant-info-width;
+  margin: 3px 3px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-family: 'Josefin Sans', sans-serif;
+
+}
+
+.restaurant_secondary_info {
+  width: $restaurant-secondary-info-width;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.accepts_ten_bis, .not_accepts_ten_bis {
+  content: image_url($tenbis-icon);
+  width: $tenbis-icon-size;
+  height: $tenbis-icon-size;
+}
+
+.not_accepts_ten_bis {
+  filter: grayscale(100%) opacity(20%);
+}
+
+.page-header {
+  margin-top: 0;
+}
+
+.map_right{
+  height: $map-height;
+  width: $map-width;
+  margin-left: 15px;
+}
+
+.map_loading_element{
+  height: 100%;
+}
+
+.filters_bar{
+  height: $filters-bar-height;
+  bottom: 5px;
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+  background-color: $filter-bkgrnd;
+}
+
+.filter, .filter_ten_bis{
+  width: $filter-width;
+  margin-right: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.filter_ten_bis{
+  width: 20%;
+}
+
+.filter_labels, .deliver_time_label{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  color: $header-text-color;
+}
+
+.deliver_time_label {
+  font-size: 14px;
+}
+
+.filter_select {
+  width: $filter-width;
+  height: $filter-height;
+  padding: 6px 20px;
+  border: 1px solid $search-border-color;
+  border-radius: 4px;
+  box-sizing: border-box;
+  align-self: center;
+}
+
+.max_delivery_time {
+  width: 100%;
+  height: $filter-height;
+  padding: 6px 20px;
+  align-self: center;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border: 3px solid $search-border-color;
+  outline: none;
+  -webkit-transition: $search-box-animation-transition;
+  transition: $search-box-animation-transition;
+
+  &:focus {
+    border: 3px solid $search-selected-border-color;
+  }
+}
+
+.restaurant_name{
+  margin-top: 5px;
+  font-size: $restaurant-name-font-size;
+  font-weight: bold;
+  font-family: 'Abril Fatface', cursive;
+}
+
+.deliver_time_slider{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+//======= Custom Elements =========
+
+/* Custom dropdown */
+.custom_dropdown {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.custom_dropdown select {
+  background-color: $cell-bkgrnd;
+  color: black;
+  font-size: inherit;
+  padding: .5em 2.5em .5em .5em;
+  border: 0;
+  margin: 0;
+  border-radius: 3px;
+  text-indent: 0.01px;
+  text-overflow: '';
+  -webkit-appearance: button; /* hide default arrow in chrome OSX */
+}
+
+.custom_dropdown::before,
+.custom_dropdown::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.custom_dropdown::after { /*  Custom dropdown arrow */
+  content: $down-arrow;
+  height: 1em;
+  font-size: .625em;
+  line-height: 1;
+  right: 1.2em;
+  top: 50%;
+  margin-top: -.5em;
+}
+
+.custom_dropdown::before { /*  Custom dropdown arrow cover */
+  width: 2em;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 0 3px 3px 0;
+}
+
+.custom_dropdown::before {
+  background-color: rgba(0,0,0,.15);
+}
+
+//Custom checkbox
+.checkbox_container {
+  display: block;
+  position: relative;
+  padding-left: 0;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &:hover input ~ .checkmark{
+    background-color: $light-grey;
+  }
+}
+
+/* Hide the browser's default checkbox */
+.checkbox_container input {
+  position: relative;
+  opacity: 0;
+  cursor: pointer;
+
+  /* When the checkbox is hecked, add a blue background */
+  &:checked ~.checkmark {
+    background-color: $checkbox-selected-color;
+  }
+
+  &:checked ~.checkmark:after {
+    display: block;
+  }
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: $checkbox-size;
+  width: $checkbox-size;
+  background-color: $faux-white;
+
+  &:after{
+    content: "";
+    position: absolute;
+    display: none;
+  }
+}
+
+/* Style the checkmark/indicator */
+.checkbox_container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
