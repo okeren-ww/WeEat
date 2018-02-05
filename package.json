@@ -28,5 +28,9 @@
     "jquery": "^3.2.1",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1"
+  },
+  "engines": {
+    "yarn": ">= 1.0.2",
+    "node": ">=6.11.1"
   }
 }
