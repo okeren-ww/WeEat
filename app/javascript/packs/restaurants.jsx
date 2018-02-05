@@ -21,10 +21,6 @@ class RestaurantsContainer extends React.Component {
     fetchJSON(Constants.RESTAURANTS_URL).then(response => this.setRestaurantsFromJson(response));
   }
 
-  componentDidMount() {
-    document.getElementById('delivery_time_label').innerHTML = this.state.filterDelTime + ' Minutes';
-  }
-
   setRestaurantsFromJson = (response) => {
     this.setState({
       restaurants: response,
