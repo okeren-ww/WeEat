@@ -48,7 +48,7 @@ export class CuisineSelect extends React.Component {
     };
 
     componentWillMount() {
-      fetchJSON(Constants.CUISINES_URL).then(response => this.setCuisinesFromJson(response));
+      fetchJSON(process.env.CUISINES_URL).then(response => this.setCuisinesFromJson(response));
     }
 
     setCuisinesFromJson = (response) => {
