@@ -9,7 +9,7 @@ dotenvFiles.forEach((dotenvFile) => {
   dotenv.config({ path: dotenvFile, silent: true });
 });
 
-environment.plugins.set('Environment', new webpack.EnvironmentPlugin(['test', 'GMAPS_API_KEY', 'GMAPS_GEOCODE_API_KEY',
+environment.plugins.set('Environment', new webpack.EnvironmentPlugin(['GMAPS_API_KEY', 'GMAPS_GEOCODE_API_KEY',
   'SERVER_URL', 'SERVER_PORT']));
 
 module.exports = environment;
