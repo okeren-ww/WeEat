@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
+gem 'active_model_serializers', '~> 0.10.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record
@@ -43,8 +43,8 @@ gem 'hashie', '~> 3.5', '>= 3.5.7'
 gem 'react_on_rails', '10.0.2'
 gem 'sidekiq', '~> 5.0', '>= 5.0.5'
 
+
 group :development, :test do
-  gem 'active_model_serializers', '~> 0.10.0'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'annotate', '~> 2.7', '>= 2.7.2'
   gem 'byebug', platforms: %i(mri mingw x64_mingw)
@@ -56,6 +56,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.7'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 3.1', '>= 3.1.2'
+
 end
 
 group :development do
