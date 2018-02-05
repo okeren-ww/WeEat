@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FilterableRestaurantTable from './components/RestaurantsList';
+import FilterableRestaurantList from './components/RestaurantsList';
 import Map from './components/Map';
 import { TextFilter, FilterBar } from './components/Filters';
 import * as Constants from './components/Constants';
@@ -83,20 +83,20 @@ class RestaurantsContainer extends React.Component {
         </div>
         <FilterBar handleOnChangeCuisine={this.handleOnChangeCuisine}
           handleOnChangeRating={this.handleOnChangeRating}
-          handleOnMaxDelTimeChange = {this.handleOnMaxDelTimeChange}
+          handleOnMaxDelTimeChange={this.handleOnMaxDelTimeChange}
           handleOnTenBisChange={this.handleOnTenBisChange}
           filterDelTime={this.state.filterDelTime} />
 
         <div className="restaurants_container">
           <div className="restaurants_list">
-            <FilterableRestaurantTable
-              restaurants = {this.state.restaurants}
-              filterText = {this.state.filterText}
-              filterCuisine = {this.state.filterCuisine}
-              filterRating = {this.state.filterRating}
-              filterTenBis = {this.state.filterTenBis}
-              filterDelTime = {this.state.filterDelTime}
-              handleSelectedRestaurantChange = {this.handleSelectedRestaurantChange}
+            <FilterableRestaurantList
+              restaurants={this.state.restaurants}
+              filterText={this.state.filterText}
+              filterCuisine={this.state.filterCuisine}
+              filterRating={this.state.filterRating}
+              filterTenBis={this.state.filterTenBis}
+              filterDelTime={this.state.filterDelTime}
+              handleSelectedRestaurantChange={this.handleSelectedRestaurantChange}
             />
           </div>
           <Map selectedRestaurant = {this.state.marker} />

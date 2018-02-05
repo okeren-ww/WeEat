@@ -8,7 +8,7 @@ export class RatingSelect extends React.Component {
     const options = [];
     options.push(<option key="All" value="All">All</option>);
     for (let i = 1; i <= 5; i = i + 1) {
-      options.push(<option key={i} value={i}>{'★'.repeat(i)}</option>);
+      options.push(<option key={`star-${i}`} value={i}>{'★'.repeat(i)}</option>);
     }
 
     return (
@@ -47,15 +47,15 @@ export class CuisineSelect extends React.Component {
       cuisines: [],
     };
 
+    componentWillMount() {
+      fetchJSON(Constants.CUISINES_URL).then(response => this.setCuisinesFromJson(response));
+    }
+
     setCuisinesFromJson = (response) => {
       this.setState({
         cuisines: response,
       });
     };
-
-    componentWillMount() {
-      fetchJSON(Constants.CUISINES_URL).then(response => this.setCuisinesFromJson(response));
-    }
 
     render() {
       let cuisines = [...this.state.cuisines].sort(function (a, b) {
@@ -109,7 +109,7 @@ export function DeliveryTimeFilter({ maxDeliveryTime, handleOnMaxDelTimeChange }
         max={120}
         value={maxDeliveryTime}
         onChange={handleOnMaxDelTimeChange} />
-      <label className="deliver_time_label" id="delivery_time_label">{maxDeliveryTime + ' Minutes'}</label>
+      <label className="deliver_time_label" id="delivery_time_label">{`${maxDeliveryTime} Minutes`}</label>
     </div>
   );
 }
