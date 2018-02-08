@@ -6,7 +6,7 @@ export const CUISINES_URL = SERVER_URL + ':' + SERVER_PORT + '/cuisines.json';
 export const GMAPS_URL_MISC = '&v=3.exp&libraries=geometry,drawing,places';
 export const GMAPS_URL = 'https://maps.googleapis.com/maps/api/js?key=' + process.env.GMAPS_API_KEY + GMAPS_URL_MISC;
 export const GMAPS_GEOCODE_URL = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
-//export const GMAPS_GEOCODE_API_KEY = '&key=AIzaSyCfRqlxOlUbqTFVK41mkcD60JcLOGVv4X8';
+// export const GMAPS_GEOCODE_API_KEY = '&key=AIzaSyCfRqlxOlUbqTFVK41mkcD60JcLOGVv4X8';
 export const NEW_YORK_LAT = 40.734;
 export const NEW_YORK_LON = -74;
 export const DEFAULT_MAP_ZOOM = 13;

@@ -26,7 +26,8 @@ export default class ReviewsList extends React.Component {
       reviewList.forEach((review) => {
         reviewElements.push(
           <ReviewCell
-            review = {review} />
+            review = {review}
+            key={review.id} />
         );
       });
       return reviewElements;
