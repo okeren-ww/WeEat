@@ -10,7 +10,7 @@ export default class ReviewsList extends React.Component {
     };
 
     componentWillMount() {
-      fetchJSON(Constants.RESTAURANTS_URL + '/' + this.props.restaurant.id + '/reviews')
+      fetchJSON(process.env.RESTAURANTS_URL + '/' + this.props.restaurant.id + '/reviews')
         .then(response => this.setReviewsFromJson(response));
     }
 
