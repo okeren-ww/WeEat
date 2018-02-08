@@ -2,7 +2,7 @@ import React from 'react';
 import { fetchJSON } from '../lib/HttpFetch';
 import * as Constants from './Constants';
 import ReviewCell from './ReviewCell';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 export default class ReviewsList extends React.Component {
     state = {
