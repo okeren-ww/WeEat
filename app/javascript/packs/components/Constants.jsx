@@ -1,6 +1,6 @@
 export const SERVER_URL = 'http://localhost';
 export const SERVER_PORT = '3000';
-export const RESTAURANTS_URL = SERVER_URL + ':' + SERVER_PORT + '/restaurants.json';
+export const RESTAURANTS_URL = SERVER_URL + ':' + SERVER_PORT + '/restaurants';
 export const CUISINES_URL = SERVER_URL + ':' + SERVER_PORT + '/cuisines.json';
 // export const GMAPS_API_KEY = 'AIzaSyAbWsYd03RL-T_1VZW5wU7Zod2u9H3QIXM';
 export const GMAPS_URL_MISC = '&v=3.exp&libraries=geometry,drawing,places';

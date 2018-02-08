@@ -49,7 +49,6 @@ h1 {
   }
 }
 
-
 .restaurants_container{
   min-height: 100%;
   margin-top: 5px;
@@ -207,6 +206,16 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+
+.review_cell{
+  margin-bottom: 5px;
+  border: 2px solid $cell-selected-bkgrnd;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
 }
 
