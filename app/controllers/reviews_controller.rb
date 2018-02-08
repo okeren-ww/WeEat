@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.json
   def index
-    reviews = Review.all
+    reviews = Review.where(restaurant_id: params[:restaurant_id])
 
     render json: reviews.to_json
   end

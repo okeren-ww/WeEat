@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Arimo|Comfortaa|Pacifico|Josefin+Sans');
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Arimo|Comfortaa|Pacifico|Josefin+Sans|Raleway:500,600i');
 @import 'variables';
 
 body {
@@ -49,7 +49,6 @@ h1 {
   }
 }
 
-
 .restaurants_container{
   min-height: 100%;
   margin-top: 5px;
@@ -74,7 +73,6 @@ h1 {
   align-items: stretch;
   justify-content: space-between;
   background-color: $cell-bkgrnd;
-  cursor: pointer;
 
   &:hover {
     background-color: $cell-selected-bkgrnd;
@@ -209,6 +207,53 @@ h1 {
   justify-content: center;
   align-items: center;
 }
+
+.restaurant_reviews_button{
+  background-color: $review-button-color;
+  color: white;
+  padding: 5px 5px;
+  border-radius: 3px;
+  &:hover{
+    background-color: $body-bkgrnd;
+  }
+}
+
+.reviews_list{
+  width: 450px;
+}
+
+.review_cell{
+  margin-bottom: 5px;
+  background-color: $cell-bkgrnd;
+  border: 2px solid $cell-selected-bkgrnd;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.reviewer_name{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  margin-bottom: 5px;
+  margin-top: 4px;
+  margin-left: 12px
+}
+
+.review_comment{
+  font-family: 'Raleway', sans-serif;
+  margin-left: 12px;
+  margin-bottom: 5px;
+}
+
+.review_rating{
+  font-family: 'Raleway', sans-serif;
+  margin-left: 12px;
+  margin-bottom: 2px;
+}
+
+
 
 //======= Custom Elements =========
 
